@@ -39,6 +39,12 @@ namespace Clock
 			this.cb_ShowWeekday = new System.Windows.Forms.CheckBox();
 			this.btn_HideControls = new System.Windows.Forms.Button();
 			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+			this.ClockContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.tb_show_Date = new System.Windows.Forms.ToolStripTextBox();
+			this.tb_show_Day = new System.Windows.Forms.ToolStripTextBox();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.tb_Exit = new System.Windows.Forms.ToolStripTextBox();
+			this.ClockContextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// labelTime
@@ -54,7 +60,6 @@ namespace Clock
 			this.labelTime.TabIndex = 0;
 			this.labelTime.Text = "CurrentTime";
 			this.labelTime.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.labelTime.Click += new System.EventHandler(this.labelTime_Click);
 			this.labelTime.MouseHover += new System.EventHandler(this.labelTime_MouseHover);
 			// 
 			// timer
@@ -103,11 +108,54 @@ namespace Clock
 			this.notifyIcon.Visible = true;
 			this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
 			// 
+			// ClockContextMenuStrip
+			// 
+			this.ClockContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tb_show_Date,
+            this.tb_show_Day,
+            this.toolStripSeparator1,
+            this.tb_Exit});
+			this.ClockContextMenuStrip.Name = "ClockContextMenuStrip";
+			this.ClockContextMenuStrip.Size = new System.Drawing.Size(187, 107);
+			// 
+			// tb_show_Date
+			// 
+			this.tb_show_Date.Font = new System.Drawing.Font("Segoe UI", 9F);
+			this.tb_show_Date.HideSelection = false;
+			this.tb_show_Date.Name = "tb_show_Date";
+			this.tb_show_Date.ReadOnly = true;
+			this.tb_show_Date.Size = new System.Drawing.Size(100, 23);
+			this.tb_show_Date.Text = "Показать дату";
+			this.tb_show_Date.Click += new System.EventHandler(this.tb_show_Date_Click);
+			// 
+			// tb_show_Day
+			// 
+			this.tb_show_Day.Font = new System.Drawing.Font("Segoe UI", 9F);
+			this.tb_show_Day.Name = "tb_show_Day";
+			this.tb_show_Day.ReadOnly = true;
+			this.tb_show_Day.Size = new System.Drawing.Size(126, 23);
+			this.tb_show_Day.Text = "Показать день недели";
+			this.tb_show_Day.Click += new System.EventHandler(this.tb_show_Day_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(183, 6);
+			// 
+			// tb_Exit
+			// 
+			this.tb_Exit.Font = new System.Drawing.Font("Segoe UI", 9F);
+			this.tb_Exit.Name = "tb_Exit";
+			this.tb_Exit.Size = new System.Drawing.Size(100, 23);
+			this.tb_Exit.Text = "EXIT";
+			this.tb_Exit.Click += new System.EventHandler(this.tb_Exit_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(298, 445);
+			this.ContextMenuStrip = this.ClockContextMenuStrip;
 			this.Controls.Add(this.btn_HideControls);
 			this.Controls.Add(this.cb_ShowWeekday);
 			this.Controls.Add(this.cb_ShowDate);
@@ -116,9 +164,10 @@ namespace Clock
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
-			this.StartPosition = FormStartPosition.Manual;
-			
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Clock PV_521";
+			this.ClockContextMenuStrip.ResumeLayout(false);
+			this.ClockContextMenuStrip.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -132,6 +181,11 @@ namespace Clock
 		private System.Windows.Forms.CheckBox cb_ShowWeekday;
 		private System.Windows.Forms.Button btn_HideControls;
 		private System.Windows.Forms.NotifyIcon notifyIcon;
+		private ContextMenuStrip ClockContextMenuStrip;
+		private ToolStripTextBox tb_show_Day;
+		private ToolStripSeparator toolStripSeparator1;
+		private ToolStripTextBox tb_Exit;
+		private ToolStripTextBox tb_show_Date;
 	}
 }
 

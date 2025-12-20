@@ -60,9 +60,22 @@ namespace Clock
 			this.TopMost= false;
 		}
 
-		private void labelTime_Click(object sender, EventArgs e)
+		private void tb_show_Date_Click(object sender, EventArgs e)
 		{
-
+			if(cb_ShowDate.Checked == true) cb_ShowDate.Checked = false;
+			else cb_ShowDate.Checked = true;
 		}
+
+		private void tb_show_Day_Click(object sender, EventArgs e)
+		{
+			if (cb_ShowWeekday.Checked == true) cb_ShowWeekday.Checked = false;
+			else cb_ShowWeekday.Checked = true;
+		}
+
+		private void tb_Exit_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+			
 	}
 }
