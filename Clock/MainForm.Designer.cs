@@ -117,7 +117,7 @@ namespace Clock
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
 			this.StartPosition = FormStartPosition.Manual;
-			this.Location = new Point(Screen.PrimaryScreen.Bounds.Width - this.Width+8, 0);
+			
 			this.Text = "Clock PV_521";
 			this.ResumeLayout(false);
 			this.PerformLayout();

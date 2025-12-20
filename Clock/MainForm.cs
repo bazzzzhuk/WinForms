@@ -14,6 +14,7 @@ namespace Clock
 	{
 		public MainForm()
 		{
+			this.Location = new System.Drawing.Point(Screen.PrimaryScreen.Bounds.Width - this.Width-8, 0);
 			InitializeComponent();
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
