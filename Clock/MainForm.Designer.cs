@@ -42,12 +42,16 @@
 			// 
 			this.labelTime.AutoSize = true;
 			this.labelTime.BackColor = System.Drawing.Color.DarkSeaGreen;
+			this.labelTime.Cursor = System.Windows.Forms.Cursors.PanNW;
 			this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelTime.Location = new System.Drawing.Point(13, 13);
+			this.labelTime.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+			this.labelTime.Location = new System.Drawing.Point(50, 9);
 			this.labelTime.Name = "labelTime";
 			this.labelTime.Size = new System.Drawing.Size(224, 42);
 			this.labelTime.TabIndex = 0;
 			this.labelTime.Text = "CurrentTime";
+			this.labelTime.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.labelTime.Click += new System.EventHandler(this.labelTime_Click);
 			this.labelTime.MouseHover += new System.EventHandler(this.labelTime_MouseHover);
 			// 
 			// timer
@@ -81,7 +85,7 @@
 			// btn_HideControls
 			// 
 			this.btn_HideControls.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_HideControls.Location = new System.Drawing.Point(20, 314);
+			this.btn_HideControls.Location = new System.Drawing.Point(20, 315);
 			this.btn_HideControls.Name = "btn_HideControls";
 			this.btn_HideControls.Size = new System.Drawing.Size(254, 100);
 			this.btn_HideControls.TabIndex = 3;

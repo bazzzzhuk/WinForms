@@ -58,5 +58,10 @@ namespace Clock
 			this.TopMost= true;
 			this.TopMost= false;
 		}
+
+		private void labelTime_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
