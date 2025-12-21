@@ -40,10 +40,10 @@ namespace Clock
 			this.btn_HideControls = new System.Windows.Forms.Button();
 			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
 			this.ClockContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.tb_show_Date = new System.Windows.Forms.ToolStripTextBox();
-			this.tb_show_Day = new System.Windows.Forms.ToolStripTextBox();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.tb_Exit = new System.Windows.Forms.ToolStripTextBox();
+			this.tb_show_Date = new System.Windows.Forms.ToolStripMenuItem();
+			this.tb_show_Day = new System.Windows.Forms.ToolStripMenuItem();
+			this.tb_Exit = new System.Windows.Forms.ToolStripMenuItem();
 			this.ClockContextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -116,37 +116,31 @@ namespace Clock
             this.toolStripSeparator1,
             this.tb_Exit});
 			this.ClockContextMenuStrip.Name = "ClockContextMenuStrip";
-			this.ClockContextMenuStrip.Size = new System.Drawing.Size(187, 107);
-			// 
-			// tb_show_Date
-			// 
-			this.tb_show_Date.Font = new System.Drawing.Font("Segoe UI", 9F);
-			this.tb_show_Date.HideSelection = false;
-			this.tb_show_Date.Name = "tb_show_Date";
-			this.tb_show_Date.ReadOnly = true;
-			this.tb_show_Date.Size = new System.Drawing.Size(100, 23);
-			this.tb_show_Date.Text = "Показать дату";
-			this.tb_show_Date.Click += new System.EventHandler(this.tb_show_Date_Click);
-			// 
-			// tb_show_Day
-			// 
-			this.tb_show_Day.Font = new System.Drawing.Font("Segoe UI", 9F);
-			this.tb_show_Day.Name = "tb_show_Day";
-			this.tb_show_Day.ReadOnly = true;
-			this.tb_show_Day.Size = new System.Drawing.Size(126, 23);
-			this.tb_show_Day.Text = "Показать день недели";
-			this.tb_show_Day.Click += new System.EventHandler(this.tb_show_Day_Click);
+			this.ClockContextMenuStrip.Size = new System.Drawing.Size(195, 76);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new System.Drawing.Size(183, 6);
 			// 
+			// tb_show_Date
+			// 
+			this.tb_show_Date.Name = "tb_show_Date";
+			this.tb_show_Date.Size = new System.Drawing.Size(194, 22);
+			this.tb_show_Date.Text = "Показать дату";
+			this.tb_show_Date.Click += new System.EventHandler(this.tb_show_Date_Click);
+			// 
+			// tb_show_Day
+			// 
+			this.tb_show_Day.Name = "tb_show_Day";
+			this.tb_show_Day.Size = new System.Drawing.Size(194, 22);
+			this.tb_show_Day.Text = "Показать день недели";
+			this.tb_show_Day.Click += new System.EventHandler(this.tb_show_Day_Click);
+			// 
 			// tb_Exit
 			// 
-			this.tb_Exit.Font = new System.Drawing.Font("Segoe UI", 9F);
 			this.tb_Exit.Name = "tb_Exit";
-			this.tb_Exit.Size = new System.Drawing.Size(100, 23);
+			this.tb_Exit.Size = new System.Drawing.Size(194, 22);
 			this.tb_Exit.Text = "EXIT";
 			this.tb_Exit.Click += new System.EventHandler(this.tb_Exit_Click);
 			// 
@@ -167,7 +161,6 @@ namespace Clock
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Clock PV_521";
 			this.ClockContextMenuStrip.ResumeLayout(false);
-			this.ClockContextMenuStrip.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -182,10 +175,10 @@ namespace Clock
 		private System.Windows.Forms.Button btn_HideControls;
 		private System.Windows.Forms.NotifyIcon notifyIcon;
 		private ContextMenuStrip ClockContextMenuStrip;
-		private ToolStripTextBox tb_show_Day;
 		private ToolStripSeparator toolStripSeparator1;
-		private ToolStripTextBox tb_Exit;
-		private ToolStripTextBox tb_show_Date;
+		private ToolStripMenuItem tb_show_Date;
+		private ToolStripMenuItem tb_show_Day;
+		private ToolStripMenuItem tb_Exit;
 	}
 }
 

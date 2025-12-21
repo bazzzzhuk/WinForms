@@ -64,18 +64,23 @@ namespace Clock
 		{
 			if(cb_ShowDate.Checked == true) cb_ShowDate.Checked = false;
 			else cb_ShowDate.Checked = true;
+			ClockContextMenuStrip.Focus();
+			//ClockContextMenuStrip.Text.();
+			ClockContextMenuStrip.Close();
 		}
 
 		private void tb_show_Day_Click(object sender, EventArgs e)
 		{
 			if (cb_ShowWeekday.Checked == true) cb_ShowWeekday.Checked = false;
 			else cb_ShowWeekday.Checked = true;
+			ClockContextMenuStrip.Focus();
+			ClockContextMenuStrip.Close();
 		}
 
 		private void tb_Exit_Click(object sender, EventArgs e)
 		{
 			this.Close();
 		}
-			
+
 	}
 }
