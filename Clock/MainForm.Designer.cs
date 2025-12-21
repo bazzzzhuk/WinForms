@@ -103,6 +103,7 @@ namespace Clock
 			// 
 			// notifyIcon
 			// 
+			this.notifyIcon.ContextMenuStrip = this.ClockContextMenuStrip;
 			this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
 			this.notifyIcon.Text = "System tray";
 			this.notifyIcon.Visible = true;
@@ -121,7 +122,7 @@ namespace Clock
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(183, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(191, 6);
 			// 
 			// tb_show_Date
 			// 
