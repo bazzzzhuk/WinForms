@@ -67,11 +67,11 @@
 			this.labelTime.ContextMenuStrip = this.contextMenuStrip;
 			this.labelTime.Cursor = System.Windows.Forms.Cursors.PanNW;
 			this.labelTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelTime.Font = new System.Drawing.Font("Stencil Std", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.labelTime.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.labelTime.Location = new System.Drawing.Point(47, 9);
 			this.labelTime.Name = "labelTime";
-			this.labelTime.Size = new System.Drawing.Size(224, 42);
+			this.labelTime.Size = new System.Drawing.Size(305, 49);
 			this.labelTime.TabIndex = 0;
 			this.labelTime.Text = "CurrentTime";
 			this.labelTime.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -173,14 +173,14 @@
 			// tsmiForegroundColor
 			// 
 			this.tsmiForegroundColor.Name = "tsmiForegroundColor";
-			this.tsmiForegroundColor.Size = new System.Drawing.Size(180, 22);
+			this.tsmiForegroundColor.Size = new System.Drawing.Size(167, 22);
 			this.tsmiForegroundColor.Text = "ForegroundColor";
 			this.tsmiForegroundColor.Click += new System.EventHandler(this.tsmiForegroundColor_Click);
 			// 
 			// tsmiBackgroundColor
 			// 
 			this.tsmiBackgroundColor.Name = "tsmiBackgroundColor";
-			this.tsmiBackgroundColor.Size = new System.Drawing.Size(180, 22);
+			this.tsmiBackgroundColor.Size = new System.Drawing.Size(167, 22);
 			this.tsmiBackgroundColor.Text = "BackgroundColor";
 			this.tsmiBackgroundColor.Click += new System.EventHandler(this.tsmiBackgroundColor_Click);
 			// 
@@ -277,6 +277,10 @@
 			this.notifyIcon.Text = "System tray";
 			this.notifyIcon.Visible = true;
 			this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
+			// 
+			// fontDialog
+			// 
+			this.fontDialog.Font = new System.Drawing.Font("Stencil Std", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			// 
 			// MainForm
 			// 
