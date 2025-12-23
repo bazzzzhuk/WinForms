@@ -12,12 +12,15 @@ namespace Clock
 {
 	public partial class MainForm : Form
 	{
+			Point pos = new Point();
 		public MainForm()
 		{
+			//this.Location =  pos;
 			InitializeComponent();
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			SetVisibility(false);
+			//this.MouseDown += new MouseEventHandler(this);
 		}
 		void SetVisibility(bool visible)
 		{
@@ -27,6 +30,7 @@ namespace Clock
 			this.ShowInTaskbar = visible;
 			this.FormBorderStyle = visible ? FormBorderStyle.FixedSingle:FormBorderStyle.None;
 			this.TransparencyKey = visible? Color.Empty:this.BackColor;
+			this.BackgroundImage = visible ? Clock.Properties.Resources._60b3361734465db24cec5759441644db : null;
 		}
 
 		private void timer_Tick(object sender, EventArgs e)
@@ -88,5 +92,57 @@ namespace Clock
 			tsmiShowWeekday.Checked = cb_ShowWeekday.Checked;
 
 		private void tsmiQuit_Click(object sender, EventArgs e)=> this.Close();
+
+		private void tsmiForegroundColor_Click(object sender, EventArgs e)
+		{
+			if (ColorDialog.ShowDialog() == DialogResult.OK) this.ForeColor = ColorDialog.Color;
+		}
+
+		private void tsmiBackgroundColor_Click(object sender, EventArgs e)
+		{
+			if (ColorDialog.ShowDialog() == DialogResult.OK)labelTime.BackColor = ColorDialog.Color;
+		}
+		
+		int x = 0;
+		int y = 0;
+		private void MainForm_MouseDown(object sender, MouseEventArgs e)
+		{
+			x = e.X;
+			y = e.Y;
+		}
+
+		private void MainForm_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left) // или любую другую, какая удобнее
+			{
+				//pos = new Point(Cursor.Position.X/2, Cursor.Position.Y/2);
+				//this.Location = PointToClient(pos);
+				this.Left += e.X - x;
+				this.Top += e.Y - y;
+			}
+		}
+
+		private void labelTime_MouseDown(object sender, MouseEventArgs e)
+		{
+			x = e.X;
+			y = e.Y;
+		}
+
+		private void labelTime_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left) // или любую другую, какая удобнее
+			{
+				//pos = new Point(Cursor.Position.X/2, Cursor.Position.Y/2);
+				//this.Location = PointToClient(pos);
+				this.Left += e.X - x;
+				this.Top += e.Y - y;
+			}
+		}
+				
+		private void tsmiFont_Click(object sender, EventArgs e)
+		{
+			if (fontDialog.ShowDialog() == DialogResult.OK) labelTime.Font = fontDialog.Font;
+
+		}
 	}
 }
