@@ -12,12 +12,21 @@ namespace Clock
 {
 	public partial class MainForm : Form
 	{
+		ColorDialog foregroundColorDialog;
+		ColorDialog backgroundColorDialog;
+
 		public MainForm()
 		{
 			InitializeComponent();
+			this.Location = new Point
+				(Screen.PrimaryScreen.Bounds.Width-this.Width -350,
+				350
+				);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			SetVisibility(false);
+			foregroundColorDialog = new ColorDialog();
+			backgroundColorDialog = new ColorDialog();
 		}
 		void SetVisibility(bool visible)
 		{
@@ -25,8 +34,8 @@ namespace Clock
 			cb_ShowWeekday.Visible = visible;
 			btn_HideControls.Visible = visible;
 			this.ShowInTaskbar = visible;
-			this.FormBorderStyle = visible ? FormBorderStyle.FixedSingle:FormBorderStyle.None;
-			this.TransparencyKey = visible? Color.Empty:this.BackColor;
+			this.FormBorderStyle = visible ? FormBorderStyle.FixedSingle : FormBorderStyle.None;
+			this.TransparencyKey = visible ? Color.Empty : this.BackColor;
 		}
 
 		private void timer_Tick(object sender, EventArgs e)
@@ -38,7 +47,7 @@ namespace Clock
 			//	);
 			labelTime.Text = DateTime.Now.ToString("HH:mm:ss");
 			if (cb_ShowDate.Checked)
-				labelTime.Text +=$"\n{DateTime.Now.ToString("yyyy:MM:dd")}";
+				labelTime.Text += $"\n{DateTime.Now.ToString("yyyy:MM:dd")}";
 			if (cb_ShowWeekday.Checked)
 				labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
 			notifyIcon.Text = labelTime.Text;
@@ -59,12 +68,12 @@ namespace Clock
 			if (!TopMost)
 			{
 				this.TopMost = true;
-				this.TopMost = false; 
+				this.TopMost = false;
 			}
 		}
-		
-		private void tsmiTopmost_Click(object sender, EventArgs e)=> this.TopMost = tsmiTopmost.Checked;
-		
+
+		private void tsmiTopmost_Click(object sender, EventArgs e) => this.TopMost = tsmiTopmost.Checked;
+
 
 		private void tsmiShowControls_CheckedChanged(object sender, EventArgs e)
 		{
@@ -75,7 +84,7 @@ namespace Clock
 			//не обрабатывать это событие.
 		}
 
-		private void tsmiShowDate_CheckedChanged(object sender, EventArgs e)=>
+		private void tsmiShowDate_CheckedChanged(object sender, EventArgs e) =>
 			cb_ShowDate.Checked = tsmiShowDate.Checked;
 
 		private void cb_ShowDate_CheckedChanged(object sender, EventArgs e) =>
@@ -87,6 +96,18 @@ namespace Clock
 		private void cb_ShowWeekday_CheckedChanged(object sender, EventArgs e) =>
 			tsmiShowWeekday.Checked = cb_ShowWeekday.Checked;
 
-		private void tsmiQuit_Click(object sender, EventArgs e)=> this.Close();
+		private void tsmiQuit_Click(object sender, EventArgs e) => this.Close();
+
+		private void tsmiForegroundColor_Click(object sender, EventArgs e)
+		{
+			foregroundColorDialog.ShowDialog();
+			labelTime.ForeColor = foregroundColorDialog.Color;
+		}
+
+		private void tsmiBackgroundColor_Click(object sender, EventArgs e)
+		{
+			backgroundColorDialog.ShowDialog();
+			labelTime.BackColor = backgroundColorDialog.Color;
+		}
 	}
 }

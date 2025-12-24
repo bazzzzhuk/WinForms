@@ -93,7 +93,7 @@
             this.toolStripSeparator6,
             this.tsmiQuit});
 			this.contextMenuStrip.Name = "contextMenuStrip";
-			this.contextMenuStrip.Size = new System.Drawing.Size(181, 282);
+			this.contextMenuStrip.Size = new System.Drawing.Size(153, 260);
 			// 
 			// tsmiTopmost
 			// 
@@ -167,14 +167,16 @@
 			// tsmiForegroundColor
 			// 
 			this.tsmiForegroundColor.Name = "tsmiForegroundColor";
-			this.tsmiForegroundColor.Size = new System.Drawing.Size(167, 22);
+			this.tsmiForegroundColor.Size = new System.Drawing.Size(180, 22);
 			this.tsmiForegroundColor.Text = "ForegroundColor";
+			this.tsmiForegroundColor.Click += new System.EventHandler(this.tsmiForegroundColor_Click);
 			// 
 			// tsmiBackgroundColor
 			// 
 			this.tsmiBackgroundColor.Name = "tsmiBackgroundColor";
-			this.tsmiBackgroundColor.Size = new System.Drawing.Size(167, 22);
+			this.tsmiBackgroundColor.Size = new System.Drawing.Size(180, 22);
 			this.tsmiBackgroundColor.Text = "BackgroundColor";
+			this.tsmiBackgroundColor.Click += new System.EventHandler(this.tsmiBackgroundColor_Click);
 			// 
 			// toolStripSeparator4
 			// 
@@ -273,6 +275,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Clock PV_521";
 			this.contextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
