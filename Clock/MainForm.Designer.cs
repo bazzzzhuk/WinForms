@@ -60,6 +60,9 @@
 			// 
 			// labelTime
 			// 
+			this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelTime.AutoSize = true;
 			this.labelTime.BackColor = System.Drawing.Color.DarkSeaGreen;
 			this.labelTime.ContextMenuStrip = this.contextMenuStrip;
@@ -267,6 +270,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoSize = true;
 			this.ClientSize = new System.Drawing.Size(298, 445);
 			this.Controls.Add(this.btn_HideControls);
 			this.Controls.Add(this.cb_ShowWeekday);

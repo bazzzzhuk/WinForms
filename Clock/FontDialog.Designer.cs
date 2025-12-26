@@ -32,6 +32,9 @@
 			this.labelExample = new System.Windows.Forms.Label();
 			this.buttonOK = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
+			this.numericUpDownFontSize = new System.Windows.Forms.NumericUpDown();
+			this.label1 = new System.Windows.Forms.Label();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// comboBoxFont
@@ -48,7 +51,7 @@
 			// 
 			this.labelExample.AutoSize = true;
 			this.labelExample.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelExample.Location = new System.Drawing.Point(12, 52);
+			this.labelExample.Location = new System.Drawing.Point(34, 103);
 			this.labelExample.Name = "labelExample";
 			this.labelExample.Size = new System.Drawing.Size(153, 39);
 			this.labelExample.TabIndex = 1;
@@ -76,11 +79,46 @@
 			this.buttonCancel.UseVisualStyleBackColor = true;
 			this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
 			// 
+			// numericUpDownFontSize
+			// 
+			this.numericUpDownFontSize.Location = new System.Drawing.Point(401, 52);
+			this.numericUpDownFontSize.Maximum = new decimal(new int[] {
+            80,
+            0,
+            0,
+            0});
+			this.numericUpDownFontSize.Minimum = new decimal(new int[] {
+            22,
+            0,
+            0,
+            0});
+			this.numericUpDownFontSize.Name = "numericUpDownFontSize";
+			this.numericUpDownFontSize.Size = new System.Drawing.Size(43, 20);
+			this.numericUpDownFontSize.TabIndex = 4;
+			this.numericUpDownFontSize.Value = new decimal(new int[] {
+            22,
+            0,
+            0,
+            0});
+			this.numericUpDownFontSize.ValueChanged += new System.EventHandler(this.numericUpDownFontSize_ValueChanged);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label1.Location = new System.Drawing.Point(351, 49);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(44, 20);
+			this.label1.TabIndex = 5;
+			this.label1.Text = "Size:";
+			// 
 			// FontDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(456, 214);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.numericUpDownFontSize);
 			this.Controls.Add(this.buttonCancel);
 			this.Controls.Add(this.buttonOK);
 			this.Controls.Add(this.labelExample);
@@ -92,6 +130,7 @@
 			this.Text = "FontDialog";
 			this.TopMost = true;
 			this.Load += new System.EventHandler(this.FontDialog_Load);
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -103,5 +142,7 @@
 		private System.Windows.Forms.Label labelExample;
 		private System.Windows.Forms.Button buttonOK;
 		private System.Windows.Forms.Button buttonCancel;
+		private System.Windows.Forms.NumericUpDown numericUpDownFontSize;
+		private System.Windows.Forms.Label label1;
 	}
 }
