@@ -40,8 +40,9 @@
 			this.comboBoxFont.FormattingEnabled = true;
 			this.comboBoxFont.Location = new System.Drawing.Point(13, 13);
 			this.comboBoxFont.Name = "comboBoxFont";
-			this.comboBoxFont.Size = new System.Drawing.Size(625, 21);
+			this.comboBoxFont.Size = new System.Drawing.Size(431, 21);
 			this.comboBoxFont.TabIndex = 0;
+			this.comboBoxFont.SelectedIndexChanged += new System.EventHandler(this.comboBoxFont_SelectedIndexChanged);
 			// 
 			// labelExample
 			// 
@@ -56,17 +57,18 @@
 			// buttonOK
 			// 
 			this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonOK.Location = new System.Drawing.Point(469, 414);
+			this.buttonOK.Location = new System.Drawing.Point(288, 179);
 			this.buttonOK.Name = "buttonOK";
 			this.buttonOK.Size = new System.Drawing.Size(75, 23);
 			this.buttonOK.TabIndex = 2;
 			this.buttonOK.Text = "OK";
 			this.buttonOK.UseVisualStyleBackColor = true;
+			this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
 			// 
 			// buttonCancel
 			// 
 			this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonCancel.Location = new System.Drawing.Point(563, 414);
+			this.buttonCancel.Location = new System.Drawing.Point(369, 179);
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.Size = new System.Drawing.Size(75, 23);
 			this.buttonCancel.TabIndex = 3;
@@ -77,7 +79,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(650, 449);
+			this.ClientSize = new System.Drawing.Size(456, 214);
 			this.Controls.Add(this.buttonCancel);
 			this.Controls.Add(this.buttonOK);
 			this.Controls.Add(this.labelExample);
