@@ -93,7 +93,7 @@
             this.toolStripSeparator6,
             this.tsmiQuit});
 			this.contextMenuStrip.Name = "contextMenuStrip";
-			this.contextMenuStrip.Size = new System.Drawing.Size(153, 260);
+			this.contextMenuStrip.Size = new System.Drawing.Size(181, 282);
 			// 
 			// tsmiTopmost
 			// 
@@ -154,6 +154,7 @@
 			this.tsmiFont.Name = "tsmiFont";
 			this.tsmiFont.Size = new System.Drawing.Size(180, 22);
 			this.tsmiFont.Text = "Font";
+			this.tsmiFont.Click += new System.EventHandler(this.tsmiFont_Click);
 			// 
 			// tsmiColor
 			// 
@@ -167,14 +168,14 @@
 			// tsmiForegroundColor
 			// 
 			this.tsmiForegroundColor.Name = "tsmiForegroundColor";
-			this.tsmiForegroundColor.Size = new System.Drawing.Size(180, 22);
+			this.tsmiForegroundColor.Size = new System.Drawing.Size(167, 22);
 			this.tsmiForegroundColor.Text = "ForegroundColor";
 			this.tsmiForegroundColor.Click += new System.EventHandler(this.tsmiForegroundColor_Click);
 			// 
 			// tsmiBackgroundColor
 			// 
 			this.tsmiBackgroundColor.Name = "tsmiBackgroundColor";
-			this.tsmiBackgroundColor.Size = new System.Drawing.Size(180, 22);
+			this.tsmiBackgroundColor.Size = new System.Drawing.Size(167, 22);
 			this.tsmiBackgroundColor.Text = "BackgroundColor";
 			this.tsmiBackgroundColor.Click += new System.EventHandler(this.tsmiBackgroundColor_Click);
 			// 
