@@ -22,5 +22,53 @@ namespace Clock.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Segoe Print, 26.25pt")]
+        public global::System.Drawing.Font myExFont {
+            get {
+                return ((global::System.Drawing.Font)(this["myExFont"]));
+            }
+            set {
+                this["myExFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DarkSeaGreen")]
+        public global::System.Drawing.Color myBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["myBackColor"]));
+            }
+            set {
+                this["myBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CTPath {
+            get {
+                return ((string)(this["CTPath"]));
+            }
+            set {
+                this["CTPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("index")]
+        public string my_size_font {
+            get {
+                return ((string)(this["my_size_font"]));
+            }
+            set {
+                this["my_size_font"] = value;
+            }
+        }
     }
 }

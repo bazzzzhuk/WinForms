@@ -1,7 +1,18 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Clock.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="myExFont" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">Segoe Print, 26.25pt</Value>
+    </Setting>
+    <Setting Name="myBackColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkSeaGreen</Value>
+    </Setting>
+    <Setting Name="CTPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="my_size_font" Type="System.String" Scope="User">
+      <Value Profile="(Default)">index</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

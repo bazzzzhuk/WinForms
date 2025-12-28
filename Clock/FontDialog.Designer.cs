@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
 			this.comboBoxFont = new System.Windows.Forms.ComboBox();
-			this.labelExample = new System.Windows.Forms.Label();
 			this.buttonOK = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
 			this.numericUpDownFontSize = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
+			this.labelExample = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -46,16 +46,6 @@
 			this.comboBoxFont.Size = new System.Drawing.Size(431, 21);
 			this.comboBoxFont.TabIndex = 0;
 			this.comboBoxFont.SelectedIndexChanged += new System.EventHandler(this.comboBoxFont_SelectedIndexChanged);
-			// 
-			// labelExample
-			// 
-			this.labelExample.AutoSize = true;
-			this.labelExample.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelExample.Location = new System.Drawing.Point(34, 103);
-			this.labelExample.Name = "labelExample";
-			this.labelExample.Size = new System.Drawing.Size(153, 39);
-			this.labelExample.TabIndex = 1;
-			this.labelExample.Text = "Example";
 			// 
 			// buttonOK
 			// 
@@ -111,6 +101,16 @@
 			this.label1.Size = new System.Drawing.Size(44, 20);
 			this.label1.TabIndex = 5;
 			this.label1.Text = "Size:";
+			// 
+			// labelExample
+			// 
+			this.labelExample.AutoSize = true;
+			this.labelExample.Font = global::Clock.Properties.Settings.Default.myExFont;
+			this.labelExample.Location = new System.Drawing.Point(34, 103);
+			this.labelExample.Name = "labelExample";
+			this.labelExample.Size = new System.Drawing.Size(153, 39);
+			this.labelExample.TabIndex = 1;
+			this.labelExample.Text = "Example";
 			// 
 			// FontDialog
 			// 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿//#define SHOWMESSAGE
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,15 +20,38 @@ namespace Clock
 		public FontDialog()
 		{
 			InitializeComponent();
-			lasthosenIndex = 0;
+			lasthosenIndex = 1;
 			LoadFonts("*.ttf");
 			LoadFonts("*.otf");
-			comboBoxFont.SelectedIndex = 1;
+			//comboBoxFont.SelectedIndex = 1;
+			int i = comboBoxFont.FindString(Properties.Settings.Default.CTPath.ToString());
+			comboBoxFont.SelectedIndex = i;
+#if SHOWMESSAGE
+			MessageBox.Show(
+					null,
+					i.ToString(),
+					"Выбранный элемент КомбоБокса",
+				MessageBoxButtons.OK,
+				MessageBoxIcon.Information); 
+#endif
+
 		}
 
 		private void FontDialog_Load(object sender, EventArgs e)
 		{
-			numericUpDownFontSize.Value = (decimal)Font.Size;
+			//MessageBox.Show(
+			//	null,
+			//	Properties.Settings.Default.my_size_font.ToString(),
+			//	"my_size_font 1",
+			//MessageBoxButtons.OK,
+			//MessageBoxIcon.Information);
+			//numericUpDownFontSize.Value = decimal.Parse(Properties.Settings.Default.my_size_font.ToString());
+			//MessageBox.Show(
+			//	null,
+			//	numericUpDownFontSize.Value.ToString(),
+			//	"my_size_font 2",
+			//MessageBoxButtons.OK,
+			//MessageBoxIcon.Information);
 		}
 		void LoadFonts(string extension)
 		{
@@ -57,18 +81,33 @@ namespace Clock
 			info += $"\nText:{comboBoxFont.SelectedText}";
 			info += $"\nValue:{comboBoxFont.SelectedValue}";
 			//MessageBox.Show(this, info, "SelectedIdexChanged", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			numericUpDownFontSize.Value = decimal.Parse(Properties.Settings.Default.my_size_font.ToString());
+
 			SetFont();
 		}
 		void SetFont()
 		{
 			PrivateFontCollection pfc = new PrivateFontCollection();
+#if SHOWMESSAGE
+			MessageBox.Show(
+					null,
+					comboBoxFont.SelectedItem.ToString(),
+					"SetFont()",
+				MessageBoxButtons.OK,
+				MessageBoxIcon.Information); 
+#endif
+			Clock.Properties.Settings.Default.CTPath = comboBoxFont.SelectedItem.ToString();
 			pfc.AddFontFile(comboBoxFont.SelectedItem.ToString());
 			labelExample.Font = new Font(pfc.Families[0], (float)numericUpDownFontSize.Value);
+			Properties.Settings.Default.myExFont = labelExample.Font;
+			Properties.Settings.Default.my_size_font = labelExample.Font.Size.ToString();
 		}
 
 		private void buttonOK_Click(object sender, EventArgs e)
 		{
 			this.Font = labelExample.Font;
+			Properties.Settings.Default.CTPath = comboBoxFont.SelectedItem.ToString();
+			Properties.Settings.Default.Save();
 			this.lasthosenIndex = comboBoxFont.SelectedIndex;
 		}
 

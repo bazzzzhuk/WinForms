@@ -1,13 +1,18 @@
-﻿using System;
+﻿//#define SHOWMESSAGE
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
+
+
 
 namespace Clock
 {
@@ -19,11 +24,31 @@ namespace Clock
 
 		public MainForm()
 		{
+#if SHOWMESSAGE
+			MessageBox.Show(
+				null,
+				Properties.Settings.Default.myExFont.Name,
+				"Шрифт по умолчанию:",
+			MessageBoxButtons.OK,
+			MessageBoxIcon.Information);
+
+			MessageBox.Show(
+				null,
+				Clock.Properties.Settings.Default.CTPath,
+				"Какой шрифт сохранён:",
+			MessageBoxButtons.OK,
+			MessageBoxIcon.Information);
+#endif
 			InitializeComponent();
+
 			this.Location = new Point
-				(Screen.PrimaryScreen.Bounds.Width-this.Width -350,
+				(Screen.PrimaryScreen.Bounds.Width - this.Width - 350,
 				350
 				);
+
+			label_font.Text = Properties.Settings.Default.CTPath.ToString();
+			//label_index.Text = FontDialog.SelectedItem.ToString();
+
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			SetVisibility(false);
@@ -105,38 +130,74 @@ namespace Clock
 		private void tsmiForegroundColor_Click(object sender, EventArgs e)
 		{
 			DialogResult result = foregroundColorDialog.ShowDialog();
-			if(result == DialogResult.OK)
+			if (result == DialogResult.OK)
 				labelTime.ForeColor = foregroundColorDialog.Color;
 		}
 
 		private void tsmiBackgroundColor_Click(object sender, EventArgs e)
 		{
 			DialogResult result = backgroundColorDialog.ShowDialog();
-			if(result == DialogResult.OK) 
+			if (result == DialogResult.OK)
+			{
 				labelTime.BackColor = backgroundColorDialog.Color;
+				Properties.Settings.Default.myBackColor = backgroundColorDialog.Color;
+				Properties.Settings.Default.Save();
+			}
 		}
 
 		private void tsmiFont_Click(object sender, EventArgs e)
 		{
 			fontDialog.Location = new Point
 				(
-				this.Location.X - fontDialog.Width+10,
+				this.Location.X - fontDialog.Width + 10,
 				this.Location.Y
 				);
-			fontDialog.Font = labelTime.Font;
+			fontDialog.Font = Properties.Settings.Default.myExFont;
 			DialogResult result = fontDialog.ShowDialog();
-			if(result == DialogResult.OK)
+			if (result == DialogResult.OK)
+			{
+				Properties.Settings.Default.myExFont = fontDialog.Font;
+
 				labelTime.Font = fontDialog.Font;
+				label_font.Text = Properties.Settings.Default.CTPath.ToString();
+				Properties.Settings.Default.Save();
+
+			}
 			//fontDialog.ShowDialog();
 		}
 
 		private void tsmiAutoStart_CheckedChanged(object sender, EventArgs e)
 		{
 			string key_name = "ClockPV_521";
-			RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",true); //true - открыть ветку на запись
+			RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true); //true - открыть ветку на запись
 			if (tsmiAutoStart.Checked) rk.SetValue(key_name, Application.ExecutablePath);
 			else rk.DeleteValue(key_name, false); //false - не бросать исключение если данная запись отсутствует в реестре.
 			rk.Dispose();
+		}
+
+		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			Properties.Settings.Default.Save();
+			//MessageBox.Show(
+			//	null,
+			//	Properties.Settings.Default.CTPath.ToString(),
+			//	"font_closing",
+			//MessageBoxButtons.OK,
+			//MessageBoxIcon.Information);
+		}
+
+		private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			Properties.Settings.Default.Save();
+#if SHOWMESSAGE
+			string sshow = $"Сохраняемый шрифт:\t\t{Properties.Settings.Default.CTPath.ToString()}\nРазмер сохраняемого шрифта: \t{Properties.Settings.Default.my_size_font.ToString()}";
+			MessageBox.Show(
+				null,
+				sshow,
+				"Сохранение перед выходом",
+			MessageBoxButtons.OK,
+			MessageBoxIcon.Information); 
+#endif
 		}
 	}
 }

@@ -1,4 +1,9 @@
-﻿namespace Clock
+﻿using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
+using System.Windows.Forms;
+
+namespace Clock
 {
 	partial class MainForm
 	{
@@ -30,7 +35,6 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-			this.labelTime = new System.Windows.Forms.Label();
 			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmiTopmost = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiShowControls = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,26 +59,12 @@
 			this.cb_ShowWeekday = new System.Windows.Forms.CheckBox();
 			this.btn_HideControls = new System.Windows.Forms.Button();
 			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+			this.CTimePath = new System.Windows.Forms.Label();
+			this.label_index = new System.Windows.Forms.Label();
+			this.label_font = new System.Windows.Forms.Label();
+			this.labelTime = new System.Windows.Forms.Label();
 			this.contextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// labelTime
-			// 
-			this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelTime.AutoSize = true;
-			this.labelTime.BackColor = System.Drawing.Color.DarkSeaGreen;
-			this.labelTime.ContextMenuStrip = this.contextMenuStrip;
-			this.labelTime.Cursor = System.Windows.Forms.Cursors.PanNW;
-			this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelTime.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.labelTime.Location = new System.Drawing.Point(50, 9);
-			this.labelTime.Name = "labelTime";
-			this.labelTime.Size = new System.Drawing.Size(224, 42);
-			this.labelTime.TabIndex = 0;
-			this.labelTime.Text = "CurrentTime";
-			this.labelTime.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
 			// contextMenuStrip
 			// 
@@ -96,13 +86,13 @@
             this.toolStripSeparator6,
             this.tsmiQuit});
 			this.contextMenuStrip.Name = "contextMenuStrip";
-			this.contextMenuStrip.Size = new System.Drawing.Size(181, 282);
+			this.contextMenuStrip.Size = new System.Drawing.Size(153, 260);
 			// 
 			// tsmiTopmost
 			// 
 			this.tsmiTopmost.CheckOnClick = true;
 			this.tsmiTopmost.Name = "tsmiTopmost";
-			this.tsmiTopmost.Size = new System.Drawing.Size(180, 22);
+			this.tsmiTopmost.Size = new System.Drawing.Size(152, 22);
 			this.tsmiTopmost.Text = "Topmost";
 			this.tsmiTopmost.Click += new System.EventHandler(this.tsmiTopmost_Click);
 			// 
@@ -110,20 +100,20 @@
 			// 
 			this.tsmiShowControls.CheckOnClick = true;
 			this.tsmiShowControls.Name = "tsmiShowControls";
-			this.tsmiShowControls.Size = new System.Drawing.Size(180, 22);
+			this.tsmiShowControls.Size = new System.Drawing.Size(152, 22);
 			this.tsmiShowControls.Text = "Show controls";
 			this.tsmiShowControls.CheckedChanged += new System.EventHandler(this.tsmiShowControls_CheckedChanged);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
 			// 
 			// tsmiShowDate
 			// 
 			this.tsmiShowDate.CheckOnClick = true;
 			this.tsmiShowDate.Name = "tsmiShowDate";
-			this.tsmiShowDate.Size = new System.Drawing.Size(180, 22);
+			this.tsmiShowDate.Size = new System.Drawing.Size(152, 22);
 			this.tsmiShowDate.Text = "Show date";
 			this.tsmiShowDate.CheckedChanged += new System.EventHandler(this.tsmiShowDate_CheckedChanged);
 			// 
@@ -131,31 +121,31 @@
 			// 
 			this.tsmiShowWeekday.CheckOnClick = true;
 			this.tsmiShowWeekday.Name = "tsmiShowWeekday";
-			this.tsmiShowWeekday.Size = new System.Drawing.Size(180, 22);
+			this.tsmiShowWeekday.Size = new System.Drawing.Size(152, 22);
 			this.tsmiShowWeekday.Text = "Show weekday";
 			this.tsmiShowWeekday.CheckedChanged += new System.EventHandler(this.tsmiShowWeekday_CheckedChanged);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
 			// 
 			// tsmiShowConsole
 			// 
 			this.tsmiShowConsole.CheckOnClick = true;
 			this.tsmiShowConsole.Name = "tsmiShowConsole";
-			this.tsmiShowConsole.Size = new System.Drawing.Size(180, 22);
+			this.tsmiShowConsole.Size = new System.Drawing.Size(152, 22);
 			this.tsmiShowConsole.Text = "Show console";
 			// 
 			// toolStripSeparator3
 			// 
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
 			// 
 			// tsmiFont
 			// 
 			this.tsmiFont.Name = "tsmiFont";
-			this.tsmiFont.Size = new System.Drawing.Size(180, 22);
+			this.tsmiFont.Size = new System.Drawing.Size(152, 22);
 			this.tsmiFont.Text = "Font";
 			this.tsmiFont.Click += new System.EventHandler(this.tsmiFont_Click);
 			// 
@@ -165,7 +155,7 @@
             this.tsmiForegroundColor,
             this.tsmiBackgroundColor});
 			this.tsmiColor.Name = "tsmiColor";
-			this.tsmiColor.Size = new System.Drawing.Size(180, 22);
+			this.tsmiColor.Size = new System.Drawing.Size(152, 22);
 			this.tsmiColor.Text = "Color";
 			// 
 			// tsmiForegroundColor
@@ -185,36 +175,36 @@
 			// toolStripSeparator4
 			// 
 			this.toolStripSeparator4.Name = "toolStripSeparator4";
-			this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
 			// 
 			// tsmiAlarms
 			// 
 			this.tsmiAlarms.Name = "tsmiAlarms";
-			this.tsmiAlarms.Size = new System.Drawing.Size(180, 22);
+			this.tsmiAlarms.Size = new System.Drawing.Size(152, 22);
 			this.tsmiAlarms.Text = "Alarms";
 			// 
 			// toolStripSeparator5
 			// 
 			this.toolStripSeparator5.Name = "toolStripSeparator5";
-			this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
 			// 
 			// tsmiAutoStart
 			// 
 			this.tsmiAutoStart.CheckOnClick = true;
 			this.tsmiAutoStart.Name = "tsmiAutoStart";
-			this.tsmiAutoStart.Size = new System.Drawing.Size(180, 22);
+			this.tsmiAutoStart.Size = new System.Drawing.Size(152, 22);
 			this.tsmiAutoStart.Text = "Auto start";
 			this.tsmiAutoStart.CheckedChanged += new System.EventHandler(this.tsmiAutoStart_CheckedChanged);
 			// 
 			// toolStripSeparator6
 			// 
 			this.toolStripSeparator6.Name = "toolStripSeparator6";
-			this.toolStripSeparator6.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator6.Size = new System.Drawing.Size(149, 6);
 			// 
 			// tsmiQuit
 			// 
 			this.tsmiQuit.Name = "tsmiQuit";
-			this.tsmiQuit.Size = new System.Drawing.Size(180, 22);
+			this.tsmiQuit.Size = new System.Drawing.Size(152, 22);
 			this.tsmiQuit.Text = "Quit";
 			this.tsmiQuit.Click += new System.EventHandler(this.tsmiQuit_Click);
 			// 
@@ -267,6 +257,59 @@
 			this.notifyIcon.Visible = true;
 			this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
 			// 
+			// CTimePath
+			// 
+			this.CTimePath.AutoSize = true;
+			this.CTimePath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Clock.Properties.Settings.Default, "CTPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			this.CTimePath.Location = new System.Drawing.Point(34, 59);
+			this.CTimePath.Name = "CTimePath";
+			this.CTimePath.Size = new System.Drawing.Size(0, 13);
+			this.CTimePath.TabIndex = 6;
+			this.CTimePath.Text = global::Clock.Properties.Settings.Default.CTPath;
+			this.CTimePath.Visible = false;
+			// 
+			// label_index
+			// 
+			this.label_index.AutoSize = true;
+			this.label_index.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Clock.Properties.Settings.Default, "my_size_font", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			this.label_index.Location = new System.Drawing.Point(20, 195);
+			this.label_index.Name = "label_index";
+			this.label_index.Size = new System.Drawing.Size(32, 13);
+			this.label_index.TabIndex = 5;
+			this.label_index.Text = global::Clock.Properties.Settings.Default.my_size_font;
+			this.label_index.Visible = false;
+			// 
+			// label_font
+			// 
+			this.label_font.AutoSize = true;
+			this.label_font.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Clock.Properties.Settings.Default, "CTPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			this.label_font.Location = new System.Drawing.Point(17, 166);
+			this.label_font.Name = "label_font";
+			this.label_font.Size = new System.Drawing.Size(0, 13);
+			this.label_font.TabIndex = 4;
+			this.label_font.Text = global::Clock.Properties.Settings.Default.CTPath;
+			this.label_font.Visible = false;
+			// 
+			// labelTime
+			// 
+			this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelTime.AutoSize = true;
+			this.labelTime.BackColor = global::Clock.Properties.Settings.Default.myBackColor;
+			this.labelTime.ContextMenuStrip = this.contextMenuStrip;
+			this.labelTime.Cursor = System.Windows.Forms.Cursors.PanNW;
+			this.labelTime.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Clock.Properties.Settings.Default, "myBackColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			this.labelTime.DataBindings.Add(new System.Windows.Forms.Binding("Font", global::Clock.Properties.Settings.Default, "myExFont", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			this.labelTime.Font = global::Clock.Properties.Settings.Default.myExFont;
+			this.labelTime.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+			this.labelTime.Location = new System.Drawing.Point(50, 9);
+			this.labelTime.Name = "labelTime";
+			this.labelTime.Size = new System.Drawing.Size(253, 61);
+			this.labelTime.TabIndex = 0;
+			this.labelTime.Text = "CurrentTime";
+			this.labelTime.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,6 +317,9 @@
 			this.AutoScroll = true;
 			this.AutoSize = true;
 			this.ClientSize = new System.Drawing.Size(298, 445);
+			this.Controls.Add(this.CTimePath);
+			this.Controls.Add(this.label_index);
+			this.Controls.Add(this.label_font);
 			this.Controls.Add(this.btn_HideControls);
 			this.Controls.Add(this.cb_ShowWeekday);
 			this.Controls.Add(this.cb_ShowDate);
@@ -284,6 +330,8 @@
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Clock PV_521";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
 			this.contextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -317,6 +365,9 @@
 		private System.Windows.Forms.ToolStripMenuItem tsmiAutoStart;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
 		private System.Windows.Forms.ToolStripMenuItem tsmiQuit;
+		private System.Windows.Forms.Label label_font;
+		private System.Windows.Forms.Label label_index;
+		private Label CTimePath;
 	}
 }
 
