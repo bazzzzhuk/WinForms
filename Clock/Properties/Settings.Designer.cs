@@ -49,7 +49,7 @@ namespace Clock.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Font")]
         public string CTPath {
             get {
                 return ((string)(this["CTPath"]));
@@ -61,7 +61,7 @@ namespace Clock.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("index")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Font_size")]
         public string my_size_font {
             get {
                 return ((string)(this["my_size_font"]));

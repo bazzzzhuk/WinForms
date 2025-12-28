@@ -274,7 +274,7 @@ namespace Clock
 			this.label_index.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Clock.Properties.Settings.Default, "my_size_font", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
 			this.label_index.Location = new System.Drawing.Point(20, 195);
 			this.label_index.Name = "label_index";
-			this.label_index.Size = new System.Drawing.Size(32, 13);
+			this.label_index.Size = new System.Drawing.Size(52, 13);
 			this.label_index.TabIndex = 5;
 			this.label_index.Text = global::Clock.Properties.Settings.Default.my_size_font;
 			this.label_index.Visible = false;
@@ -285,7 +285,7 @@ namespace Clock
 			this.label_font.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Clock.Properties.Settings.Default, "CTPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
 			this.label_font.Location = new System.Drawing.Point(17, 166);
 			this.label_font.Name = "label_font";
-			this.label_font.Size = new System.Drawing.Size(0, 13);
+			this.label_font.Size = new System.Drawing.Size(28, 13);
 			this.label_font.TabIndex = 4;
 			this.label_font.Text = global::Clock.Properties.Settings.Default.CTPath;
 			this.label_font.Visible = false;
