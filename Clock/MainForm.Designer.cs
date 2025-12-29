@@ -59,7 +59,6 @@ namespace Clock
 			this.cb_ShowWeekday = new System.Windows.Forms.CheckBox();
 			this.btn_HideControls = new System.Windows.Forms.Button();
 			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-			this.CTimePath = new System.Windows.Forms.Label();
 			this.label_index = new System.Windows.Forms.Label();
 			this.label_font = new System.Windows.Forms.Label();
 			this.labelTime = new System.Windows.Forms.Label();
@@ -257,17 +256,6 @@ namespace Clock
 			this.notifyIcon.Visible = true;
 			this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
 			// 
-			// CTimePath
-			// 
-			this.CTimePath.AutoSize = true;
-			this.CTimePath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Clock.Properties.Settings.Default, "CTPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-			this.CTimePath.Location = new System.Drawing.Point(34, 59);
-			this.CTimePath.Name = "CTimePath";
-			this.CTimePath.Size = new System.Drawing.Size(0, 13);
-			this.CTimePath.TabIndex = 6;
-			this.CTimePath.Text = global::Clock.Properties.Settings.Default.CTPath;
-			this.CTimePath.Visible = false;
-			// 
 			// label_index
 			// 
 			this.label_index.AutoSize = true;
@@ -317,7 +305,6 @@ namespace Clock
 			this.AutoScroll = true;
 			this.AutoSize = true;
 			this.ClientSize = new System.Drawing.Size(298, 445);
-			this.Controls.Add(this.CTimePath);
 			this.Controls.Add(this.label_index);
 			this.Controls.Add(this.label_font);
 			this.Controls.Add(this.btn_HideControls);
@@ -367,7 +354,6 @@ namespace Clock
 		private System.Windows.Forms.ToolStripMenuItem tsmiQuit;
 		private System.Windows.Forms.Label label_font;
 		private System.Windows.Forms.Label label_index;
-		private Label CTimePath;
 	}
 }
 
