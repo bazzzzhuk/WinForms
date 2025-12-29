@@ -26,9 +26,10 @@ namespace Clock
 			LoadFonts("*.otf");
 			comboBoxFont.SelectedIndex = 1;
 		}
-		public FontDialog(string Fontname):this()
+		public FontDialog(string Fontname, string font_size):this()
 		{
 			Filename = Fontname;
+			if(font_size!=null)numericUpDownFontSize.Value = Convert.ToDecimal(font_size);	
 			lasthosenIndex =  comboBoxFont.FindString(Fontname);
 			if(lasthosenIndex==-1)comboBoxFont.SelectedIndex = 1;
 			comboBoxFont.SelectedIndex = lasthosenIndex;
