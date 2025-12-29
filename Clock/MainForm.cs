@@ -63,7 +63,7 @@ namespace Clock
 			writer.WriteLine(labelTime.BackColor.ToArgb());
 			writer.WriteLine(labelTime.ForeColor.ToArgb());
 			//
-			writer.WriteLine(labelTime.Font.Name);
+			writer.WriteLine(fontDialog.Filename);
 			//
 			writer.Close();
 
@@ -92,7 +92,10 @@ namespace Clock
 				labelTime.BackColor = backgroundColorDialog.Color = Color.FromArgb(Convert.ToInt32(reader.ReadLine()));
 				labelTime.ForeColor = foregroundColorDialog.Color = Color.FromArgb(Convert.ToInt32(reader.ReadLine()));
 
+				fontDialog = new FontDialog(reader.ReadLine());
+				labelTime.Font = fontDialog.Font;
 				reader.Close();
+
 			}
 			catch (Exception ex)
 			{
@@ -134,7 +137,6 @@ namespace Clock
 		}
 
 		private void tsmiTopmost_Click(object sender, EventArgs e) => this.TopMost = tsmiTopmost.Checked;
-
 
 		private void tsmiShowControls_CheckedChanged(object sender, EventArgs e)
 		{
@@ -194,7 +196,7 @@ namespace Clock
 			if (tsmiAutoStart.Checked) rk.SetValue(key_name, Application.ExecutablePath);
 			else rk.DeleteValue(key_name, false); //false - не бросать исключение если данная запись отсутствует в реестре.
 			rk.Dispose();
-		}
+		}		
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
