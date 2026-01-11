@@ -17,7 +17,8 @@ namespace Clock
 		FontDialog fontDialog;
 		ColorDialog foregroundColorDialog;
 		ColorDialog backgroundColorDialog;
-
+		AlarmsDialog alarms;
+		
 		public MainForm()
 		{
 			InitializeComponent();
@@ -31,6 +32,7 @@ namespace Clock
 			fontDialog = new FontDialog();
 			foregroundColorDialog = new ColorDialog();
 			backgroundColorDialog = new ColorDialog();
+			alarms = new AlarmsDialog();
 			LoadSettings();
 			//this.TopMost = tsmiTopmost.Checked = true;
 		}
@@ -68,7 +70,7 @@ namespace Clock
 			//
 			writer.Close();
 
-			System.Diagnostics.Process.Start("notepad", "Settings.ini");
+			//System.Diagnostics.Process.Start("notepad", "Settings.ini");
 		}
 		void LoadSettings()
 		{
@@ -116,6 +118,7 @@ namespace Clock
 			if (cb_ShowWeekday.Checked)
 				labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
 			notifyIcon.Text = labelTime.Text;
+			//alarms.alarmsList.
 		}
 
 		private void btn_HideControls_Click(object sender, EventArgs e)
@@ -188,6 +191,16 @@ namespace Clock
 			if(result == DialogResult.OK)
 				labelTime.Font = fontDialog.Font;
 			//fontDialog.ShowDialog();
+		}
+
+		private void tsmiAlarms_Click(object sender, EventArgs e)
+		{
+			alarms.Location = new Point
+				(
+				this.Location.X + this.Width + 10,
+				this.Location.Y
+				);
+			DialogResult result = alarms.ShowDialog();
 		}
 
 		private void tsmiAutoStart_CheckedChanged(object sender, EventArgs e)
