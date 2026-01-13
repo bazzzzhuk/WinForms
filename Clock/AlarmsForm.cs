@@ -16,15 +16,12 @@ namespace Clock
 		public AlarmsForm()
 		{
 			InitializeComponent();
-			alarm = new AlarmDialog();
-			this.Location = new Point
-				(Screen.PrimaryScreen.Bounds.Width - this.Width - 350,
-				350
-				);
+			alarm = new AlarmDialog();			
 		}
 
 		private void buttonAdd_Click(object sender, EventArgs e)
 		{
+			alarm.Location = new Point(this.Location.X + alarm.Width*2-110, this.Location.Y+130);
 			alarm.ShowDialog();
 		}
 	}

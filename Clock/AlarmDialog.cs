@@ -18,7 +18,12 @@ namespace Clock
 			InitializeComponent();
 			dtpDate.Enabled = false;
 			fileDialog = new OpenFileDialog();
-			fileDialog.Filter = "All sound files (*.mp3; *.flac; *.flacc) |*.mp3; *.flac; *.flacc|.mp3 files(*.mp3)|*.mp3|Flac files (*.flac; *.flacc)|*.flac;*.flacc";
+			fileDialog.Filter =
+				"All sound files (*.mp3; *.flac; *.flacc; *.wav; *.ogg) |*.mp3; *.flac; *.flacc; *.wav; *.ogg|" +
+				"MP3 files(*.mp3)|*.mp3|" +
+				"Flac files (*.flac; *.flacc)|*.flac;*.flacc|" +
+				"WAV files (*.wav)|*.wav|" +
+				"OGG files (*.ogg)|*.ogg";
 		}
 
 		private void checkBoxUseDate_CheckedChanged(object sender, EventArgs e)
@@ -29,10 +34,37 @@ namespace Clock
 
 		private void buttonADD_Click(object sender, EventArgs e)
 		{
-			if(fileDialog.ShowDialog()==DialogResult.OK)
+			if (fileDialog.ShowDialog() == DialogResult.OK)
 			{
-				labelFilename.Text = fileDialog.FileName;
+				string ext = System.IO.Path.GetExtension(fileDialog.FileName);
+				if (String.Compare(ext, ".url", true) == 0)
+				{
+					fileDialog.FileName = null;
+					//DialogResult = DialogResult.Retry;
+				}
+				else
+					labelFilename.Text = fileDialog.FileName;
 			}
+			//DialogResult rez = fileDialog.ShowDialog();
+			//if(rez == DialogResult.OK)
+			//{
+			//	string ext = System.IO.Path.GetExtension(fileDialog.FileName);
+			//	//MessageBox.Show("!!!", ext, MessageBoxButtons.OK, MessageBoxIcon.None);
+			//	if (String.Compare(ext, ".url", true) == 0)
+			//	{
+			//		fileDialog.FileName = "";
+			//	}
+			//}
 		}
+		//private void fileDialog(object sender, System.ComponentModel.CancelEventArgs e)
+		//{
+		//	this.Activate();
+		//	string ext = System.IO.Path.GetExtension(fileDialog.FileName);
+		//		MessageBox.Show( "!!!", ext, MessageBoxButtons.OK, MessageBoxIcon.None);
+		//	if (String.Compare(ext, ".url", true) == 0)
+		//	{
+		//		e.Cancel = true; 
+		//	}
+		//}
 	}
 }

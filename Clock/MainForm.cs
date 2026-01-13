@@ -208,6 +208,15 @@ namespace Clock
 
 		private void tsmiAlarms_Click(object sender, EventArgs e)
 		{
+			alarms.Location = (this.Location.X - alarms.Width <0) ?
+
+				new Point(this.Location.X + this.Width,
+				this.Location.Y)				
+				:
+				new Point
+				(this.Location.X - alarms.Width,
+				this.Location.Y)
+				;
 			alarms.ShowDialog();
 		}
 	}
