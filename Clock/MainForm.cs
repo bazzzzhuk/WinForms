@@ -23,8 +23,8 @@ namespace Clock
 		{
 			InitializeComponent();
 			this.Location = new Point
-				(Screen.PrimaryScreen.Bounds.Width-this.Width -350,
-				350
+				(Screen.PrimaryScreen.Bounds.Width-this.Width -150,
+				150
 				);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;

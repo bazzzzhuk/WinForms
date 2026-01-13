@@ -17,6 +17,10 @@ namespace Clock
 		{
 			InitializeComponent();
 			alarm = new AlarmDialog();
+			this.Location = new Point
+				(Screen.PrimaryScreen.Bounds.Width - this.Width - 350,
+				350
+				);
 		}
 
 		private void buttonAdd_Click(object sender, EventArgs e)
