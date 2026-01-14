@@ -142,10 +142,13 @@
 			// 
 			// tsmiShowConsole
 			// 
+			this.tsmiShowConsole.Checked = true;
 			this.tsmiShowConsole.CheckOnClick = true;
+			this.tsmiShowConsole.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.tsmiShowConsole.Name = "tsmiShowConsole";
 			this.tsmiShowConsole.Size = new System.Drawing.Size(180, 22);
 			this.tsmiShowConsole.Text = "Show console";
+			this.tsmiShowConsole.CheckedChanged += new System.EventHandler(this.tsmiShowConsole_CheckedChanged);
 			// 
 			// toolStripSeparator3
 			// 
@@ -171,14 +174,14 @@
 			// tsmiForegroundColor
 			// 
 			this.tsmiForegroundColor.Name = "tsmiForegroundColor";
-			this.tsmiForegroundColor.Size = new System.Drawing.Size(167, 22);
+			this.tsmiForegroundColor.Size = new System.Drawing.Size(180, 22);
 			this.tsmiForegroundColor.Text = "ForegroundColor";
 			this.tsmiForegroundColor.Click += new System.EventHandler(this.tsmiForegroundColor_Click);
 			// 
 			// tsmiBackgroundColor
 			// 
 			this.tsmiBackgroundColor.Name = "tsmiBackgroundColor";
-			this.tsmiBackgroundColor.Size = new System.Drawing.Size(167, 22);
+			this.tsmiBackgroundColor.Size = new System.Drawing.Size(180, 22);
 			this.tsmiBackgroundColor.Text = "BackgroundColor";
 			this.tsmiBackgroundColor.Click += new System.EventHandler(this.tsmiBackgroundColor_Click);
 			// 
