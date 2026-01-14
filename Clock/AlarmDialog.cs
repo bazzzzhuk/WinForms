@@ -45,26 +45,13 @@ namespace Clock
 				else
 					labelFilename.Text = fileDialog.FileName;
 			}
-			//DialogResult rez = fileDialog.ShowDialog();
-			//if(rez == DialogResult.OK)
-			//{
-			//	string ext = System.IO.Path.GetExtension(fileDialog.FileName);
-			//	//MessageBox.Show("!!!", ext, MessageBoxButtons.OK, MessageBoxIcon.None);
-			//	if (String.Compare(ext, ".url", true) == 0)
-			//	{
-			//		fileDialog.FileName = "";
-			//	}
-			//}
+			
+			
 		}
-		//private void fileDialog(object sender, System.ComponentModel.CancelEventArgs e)
-		//{
-		//	this.Activate();
-		//	string ext = System.IO.Path.GetExtension(fileDialog.FileName);
-		//		MessageBox.Show( "!!!", ext, MessageBoxButtons.OK, MessageBoxIcon.None);
-		//	if (String.Compare(ext, ".url", true) == 0)
-		//	{
-		//		e.Cancel = true; 
-		//	}
-		//}
+
+		private void clbWeekDays_ItemCheck(object sender, ItemCheckEventArgs e)
+		{
+
+		}
 	}
 }
