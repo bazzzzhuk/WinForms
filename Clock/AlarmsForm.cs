@@ -23,7 +23,11 @@ namespace Clock
 		{
 			alarm.TopMost = true;
 			alarm.Location = new Point(this.Location.X + alarm.Width*2-110, this.Location.Y+130);
-			alarm.ShowDialog();
+			if (alarm.ShowDialog() == DialogResult.OK)
+			{
+				listBoxAlarms.Items.Add(alarm.Alarm);
+			}
+			
 		}
 	}
 }

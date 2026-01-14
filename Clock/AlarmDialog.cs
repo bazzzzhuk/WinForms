@@ -13,6 +13,7 @@ namespace Clock
 	public partial class AlarmDialog : Form
 	{
 		OpenFileDialog fileDialog;
+		public Alarm Alarm { get; private set; }
 		public AlarmDialog()
 		{
 			InitializeComponent();
@@ -24,6 +25,7 @@ namespace Clock
 				"Flac files (*.flac; *.flacc)|*.flac;*.flacc|" +
 				"WAV files (*.wav)|*.wav|" +
 				"OGG files (*.ogg)|*.ogg";
+			Alarm = new Alarm();
 		}
 
 		private void checkBoxUseDate_CheckedChanged(object sender, EventArgs e)
@@ -75,6 +77,14 @@ namespace Clock
 			for (int i = 0; i < clbWeekDays.CheckedIndices.Count; i++)
 				days |= (byte)(1 << clbWeekDays.CheckedIndices[i]);
 			return days;
+		}
+
+		private void buttonOK_Click(object sender, EventArgs e)
+		{
+			Alarm.Date = checkBoxUseDate.Checked?dtpDate.Value : DateTime.MaxValue;
+			Alarm.Time = dtpTime.Value;
+			Alarm.Days = new Week(GetDaysMask());
+			Alarm.Filename = labelFilename.Text;
 		}
 	}
 }
