@@ -15,13 +15,14 @@ namespace Clock
 		public string Filename { get; set; }
 		public override string ToString()
 		{
-			return $"{Date}, {Time}, {Days.ToString()}, {Filename}";
 			string info = "";
-			info += Date != DateTime.MaxValue ? Date.ToString("yyyy.MM.dd") : "Каждый день";
-			info += $"\t{Time.ToString("HH:mm:ss")}";
-			info += $"\t{Days}";
+			info += $"{Time.ToString("HH:mm:ss")} ";
+			//info += $"\t{Days}";
+			info += Date != DateTime.MinValue ? 
+				Date.ToString("dd.MM.yyyy") : (Days.DaysMask != 0 && Days.DaysMask != 127 ?
+				Days.ToString()+(Days.DaysMask.ToString().Length < 7 ? "" : "  ") : "Каждый день");
 			info += $"\t{Filename.Split('\\').Last()}";
-			return info ;
+			return info;
 		}
 	}
 }

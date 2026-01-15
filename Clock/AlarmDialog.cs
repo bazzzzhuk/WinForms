@@ -51,10 +51,6 @@ namespace Clock
 
 		}
 
-		private void clbWeekDays_ItemCheck(object sender, ItemCheckEventArgs e)
-		{
-		}
-
 		private void clbWeekDays_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			Console.WriteLine("clbWeekDays_selectedIndexChanges");
@@ -81,10 +77,34 @@ namespace Clock
 
 		private void buttonOK_Click(object sender, EventArgs e)
 		{
-			Alarm.Date = checkBoxUseDate.Checked?dtpDate.Value : DateTime.MaxValue;
+			Alarm.Date = checkBoxUseDate.Checked ? dtpDate.Value : DateTime.MinValue;
 			Alarm.Time = dtpTime.Value;
 			Alarm.Days = new Week(GetDaysMask());
 			Alarm.Filename = labelFilename.Text;
 		}
+
+		public void editAlarm(Alarm alarm)
+		{
+			this.Alarm = new Alarm
+			{
+				Time = alarm.Time,
+				Date = alarm.Date,
+				Days = new Week(alarm.Days.DaysMask),
+				Filename = alarm.Filename
+			};
+			this.dtpTime.Value = Alarm.Time;
+			this.checkBoxUseDate.Checked = this.Alarm.Date != DateTime.MinValue;
+			this.dtpDate.Enabled = this.checkBoxUseDate.Checked;
+			this.clbWeekDays.Enabled = !this.dtpDate.Enabled;
+			if (this.dtpDate.Enabled) this.dtpDate.Value = this.Alarm.Date;
+			if (this.clbWeekDays.Enabled && this.Alarm.Days != null)
+			{
+				byte oldDaysMask = Alarm.Days.DaysMask;
+				for (int i = 0; i < this.clbWeekDays.Items.Count; ++i) this.clbWeekDays.SetItemChecked(i, false);
+				for (int i = 0; i < 7; i++)	this.clbWeekDays.SetItemChecked(i, Convert.ToBoolean(oldDaysMask & (1 << i)));
+			}
+			this.labelFilename.Text = Alarm.Filename;
+		}
+
 	}
 }
