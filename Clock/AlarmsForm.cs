@@ -35,8 +35,9 @@ namespace Clock
 			if(listBoxAlarms.Items.Count > 0 && listBoxAlarms.SelectedItem != null)
 			{
 				AlarmDialog alarm = new AlarmDialog(listBoxAlarms.SelectedItem as Alarm);
+				alarm.Location = new Point(this.Location.X + alarm.Width * 2 - 110, this.Location.Y + 130);
 				alarm.ShowDialog();
-				listBoxAlarms.Refresh();
+				listBoxAlarms.Items[listBoxAlarms.SelectedIndex] = new Alarm(alarm.Alarm);
 			}
 			else
 			{
