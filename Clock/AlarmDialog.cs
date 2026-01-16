@@ -27,6 +27,22 @@ namespace Clock
 				"OGG files (*.ogg)|*.ogg";
 			Alarm = new Alarm();
 		}
+		public AlarmDialog(Alarm alarm):this()
+		{
+			Alarm = alarm;
+			Extract();
+		}
+		void Extract()
+		{
+			if (Alarm.Date != DateTime.MinValue)
+			{ 
+				dtpDate.Value = Alarm.Date; 
+				checkBoxUseDate.Checked = true;
+			}
+			dtpTime.Value = Alarm.Time;
+			Alarm.Days.Extract(clbWeekDays);
+			labelFilename.Text = Alarm.Filename;
+		}
 
 		private void checkBoxUseDate_CheckedChanged(object sender, EventArgs e)
 		{
@@ -81,7 +97,7 @@ namespace Clock
 
 		private void buttonOK_Click(object sender, EventArgs e)
 		{
-			Alarm.Date = checkBoxUseDate.Checked?dtpDate.Value : DateTime.MaxValue;
+			Alarm.Date = checkBoxUseDate.Checked?dtpDate.Value : DateTime.MinValue;
 			Alarm.Time = dtpTime.Value;
 			Alarm.Days = new Week(GetDaysMask());
 			Alarm.Filename = labelFilename.Text;
