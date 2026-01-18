@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Clock
 {
@@ -56,7 +57,12 @@ namespace Clock
 
 			for (int i = 0; i < listBoxAlarms.Items.Count; i++)
 			{
-				writer.WriteLine((listBoxAlarms.Items[i] as Alarm).ToString());
+				//writer.WriteLine((listBoxAlarms.Items[i] as Alarm).ToString());
+				writer.WriteLine("Alarm:");
+				writer.WriteLine(DateTime.Today.Add((listBoxAlarms.Items[i] as Alarm).Time).ToString("HH:mm:ss"));
+				writer.WriteLine((listBoxAlarms.Items[i] as Alarm).Date.ToString("yyyy.MM.dd"));
+				writer.WriteLine((listBoxAlarms.Items[i] as Alarm).Days);
+				writer.WriteLine((listBoxAlarms.Items[i] as Alarm).Filename.Split('\\').Last().ToString());
 			}
 
 			writer.Close();

@@ -37,6 +37,7 @@
 			this.buttonADD = new System.Windows.Forms.Button();
 			this.buttonOK = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// dtpDate
@@ -107,11 +108,10 @@
 			// labelFilename
 			// 
 			this.labelFilename.AutoSize = true;
-			this.labelFilename.Location = new System.Drawing.Point(12, 195);
+			this.labelFilename.Location = new System.Drawing.Point(85, 198);
 			this.labelFilename.Name = "labelFilename";
-			this.labelFilename.Size = new System.Drawing.Size(52, 13);
+			this.labelFilename.Size = new System.Drawing.Size(0, 13);
 			this.labelFilename.TabIndex = 5;
-			this.labelFilename.Text = "Filename:";
 			// 
 			// buttonADD
 			// 
@@ -147,6 +147,16 @@
 			this.buttonCancel.Text = "Cancel";
 			this.buttonCancel.UseVisualStyleBackColor = true;
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label1.Location = new System.Drawing.Point(22, 196);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(66, 16);
+			this.label1.TabIndex = 9;
+			this.label1.Text = "Filename:";
+			// 
 			// AlarmDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -154,6 +164,7 @@
 			this.AutoScroll = true;
 			this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
 			this.ClientSize = new System.Drawing.Size(380, 291);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.buttonCancel);
 			this.Controls.Add(this.buttonOK);
 			this.Controls.Add(this.buttonADD);
@@ -183,5 +194,6 @@
 		private System.Windows.Forms.Button buttonADD;
 		private System.Windows.Forms.Button buttonOK;
 		private System.Windows.Forms.Button buttonCancel;
+		private System.Windows.Forms.Label label1;
 	}
 }
