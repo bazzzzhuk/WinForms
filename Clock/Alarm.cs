@@ -24,7 +24,7 @@ namespace Clock
 		}
 		public override string ToString()
 		{
-			return $"{Date}, {Time}, {Days.ToString()}, {Filename}";
+			//return $"{Date}, {Time}, {Days.ToString()}, {Filename}";
 			string info = "";
 			info += Date != DateTime.MaxValue ? Date.ToString("yyyy.MM.dd") : "Каждый день";
 			info += $"\t{DateTime.Today.Add(Time).ToString("HH:mm:ss")}";

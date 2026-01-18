@@ -21,7 +21,8 @@ namespace Clock
 		}
 
 		private void buttonAdd_Click(object sender, EventArgs e)
-		{AlarmDialog alarm = new AlarmDialog();
+		{
+			AlarmDialog alarm = new AlarmDialog();
 			alarm.TopMost = true;
 			alarm.Location = new Point(this.Location.X + alarm.Width*2-110, this.Location.Y+130);
 			if (alarm.ShowDialog() == DialogResult.OK)
