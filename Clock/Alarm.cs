@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Clock
 {
@@ -11,7 +12,7 @@ namespace Clock
 	{
 		public DateTime Date {  get; set; }	
 		public TimeSpan Time { get; set; }
-		public Week Days { get; set; }
+		public Week Days { get ; set; }
 		public string Filename { get; set; }
 
 		public Alarm() { }
@@ -31,6 +32,15 @@ namespace Clock
 			info += $"\t{Days}";
 			info += $"\t{Filename.Split('\\').Last()}";
 			return info ;
+		}
+		public string AlarmToString()
+		{
+			return 
+				$"Alarm:\n" +
+				$"{Date.ToString()}\n" +
+				$"{DateTime.Today.Add(Time).ToString("HH:mm:ss")}\n" +
+				$"{Days.days}\n" +
+				$"{Filename.Split('\\').Last().ToString()}";
 		}
 	}
 }

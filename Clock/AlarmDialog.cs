@@ -42,7 +42,7 @@ namespace Clock
 			dtpTime.Value = DateTime.Now.Date + Alarm.Time;
 			//if (checkBoxUseDate.Checked) Alarm.Days = new Week(0);
 			//else 
-				Alarm.Days.Extract(clbWeekDays);
+			Alarm.Days.Extract(clbWeekDays);
 			labelFilename.Text = Alarm.Filename;
 		}
 
@@ -87,7 +87,7 @@ namespace Clock
 			Console.WriteLine("\n---------------------------------\n");
 
 		}
-		byte GetDaysMask()
+		public byte GetDaysMask()
 		{
 			byte days = 0;
 			for (int i = 0; i < clbWeekDays.CheckedIndices.Count; i++)

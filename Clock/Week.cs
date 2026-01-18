@@ -10,7 +10,9 @@ namespace Clock
 	public class Week
 	{
 		static readonly string[] NAMES = { "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" };
-		byte days;
+		public byte days { get; set; }
+
+		
 		public Week(byte days)
 		{
 			this.days = days;
@@ -25,6 +27,20 @@ namespace Clock
 			}
 				//return clb;
 		}
+		public byte Extract(string s)
+		{
+			string[] ss = s.Split(',').ToArray();
+			byte days = 0;
+			MessageBox.Show(ss.Length.ToString());
+			if (ss.Length==null) return days;
+			for(byte i = 0; i < 7; i++)
+			{
+				if (ss.Contains(NAMES[i]))
+					days |= (byte)(1 << i);
+			}
+				return days;
+		}
+		
 		public override string ToString()
 		{
 			string days = "";

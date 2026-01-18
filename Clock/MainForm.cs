@@ -21,13 +21,13 @@ namespace Clock
 		ColorDialog backgroundColorDialog;
 		AlarmsForm alarms;
 		Alarm alarm;
-		
+
 
 		public MainForm()
 		{
 			InitializeComponent();
 			this.Location = new Point
-				(Screen.PrimaryScreen.Bounds.Width-this.Width -150,
+				(Screen.PrimaryScreen.Bounds.Width - this.Width - 150,
 				150
 				);
 			this.MaximizeBox = false;
@@ -84,8 +84,8 @@ namespace Clock
 			Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
 			try
 			{
-				StreamReader reader = new StreamReader("Settings.ini");
 
+				StreamReader reader = new StreamReader("Settings.ini");
 				this.Location = new Point
 					(
 					Convert.ToInt32(reader.ReadLine()),
@@ -104,8 +104,8 @@ namespace Clock
 
 				fontDialog = new FontDialog(reader.ReadLine(), reader.ReadLine());
 				labelTime.Font = fontDialog.Font;
-				reader.Close();
 
+				reader.Close();
 			}
 			catch (Exception ex)
 			{
@@ -125,14 +125,14 @@ namespace Clock
 				labelTime.Text += $"\n{DateTime.Now.ToString("yyyy:MM:dd")}";
 			if (cb_ShowWeekday.Checked)
 				labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
-			if (alarm != null
-				&& alarm.Time.Hours == DateTime.Now.Hour
-				&& alarm.Time.Minutes == DateTime.Now.Minute
-				&& alarm.Time.Seconds == DateTime.Now.Second
-				)
-				MessageBox.Show(alarm.ToString());
-			if (DateTime.Now.Second % 5 == 0) alarm = FindNextAlarm();
-			notifyIcon.Text = labelTime.Text;
+			//if (alarm != null
+			//	&& alarm.Time.Hours == DateTime.Now.Hour
+			//	&& alarm.Time.Minutes == DateTime.Now.Minute
+			//	&& alarm.Time.Seconds == DateTime.Now.Second
+			//	)
+			//	MessageBox.Show(alarm.ToString());
+			//if (DateTime.Now.Second % 5 == 0) alarm = FindNextAlarm();
+			//notifyIcon.Text = labelTime.Text;
 		}
 
 		private void btn_HideControls_Click(object sender, EventArgs e)
@@ -182,14 +182,14 @@ namespace Clock
 		private void tsmiForegroundColor_Click(object sender, EventArgs e)
 		{
 			DialogResult result = foregroundColorDialog.ShowDialog();
-			if(result == DialogResult.OK)
+			if (result == DialogResult.OK)
 				labelTime.ForeColor = foregroundColorDialog.Color;
 		}
 
 		private void tsmiBackgroundColor_Click(object sender, EventArgs e)
 		{
 			DialogResult result = backgroundColorDialog.ShowDialog();
-			if(result == DialogResult.OK) 
+			if (result == DialogResult.OK)
 				labelTime.BackColor = backgroundColorDialog.Color;
 		}
 
@@ -197,12 +197,12 @@ namespace Clock
 		{
 			fontDialog.Location = new Point
 				(
-				this.Location.X - fontDialog.Width+10,
+				this.Location.X - fontDialog.Width + 10,
 				this.Location.Y
 				);
 			fontDialog.Font = labelTime.Font;
 			DialogResult result = fontDialog.ShowDialog();
-			if(result == DialogResult.OK)
+			if (result == DialogResult.OK)
 				labelTime.Font = fontDialog.Font;
 			//fontDialog.ShowDialog();
 		}
@@ -210,11 +210,11 @@ namespace Clock
 		private void tsmiAutoStart_CheckedChanged(object sender, EventArgs e)
 		{
 			string key_name = "ClockPV_521";
-			RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",true); //true - открыть ветку на запись
+			RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true); //true - открыть ветку на запись
 			if (tsmiAutoStart.Checked) rk.SetValue(key_name, Application.ExecutablePath);
 			else rk.DeleteValue(key_name, false); //false - не бросать исключение если данная запись отсутствует в реестре.
 			rk.Dispose();
-		}		
+		}
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
@@ -224,10 +224,10 @@ namespace Clock
 
 		private void tsmiAlarms_Click(object sender, EventArgs e)
 		{
-			alarms.Location = (this.Location.X - alarms.Width <0) ?
+			alarms.Location = (this.Location.X - alarms.Width < 0) ?
 
 				new Point(this.Location.X + this.Width,
-				this.Location.Y)				
+				this.Location.Y)
 				:
 				new Point
 				(this.Location.X - alarms.Width,
@@ -238,17 +238,17 @@ namespace Clock
 
 		private void tsmiShowConsole_CheckedChanged(object sender, EventArgs e)
 		{
-			if((sender as ToolStripMenuItem).Checked) AllocConsole();
+			if ((sender as ToolStripMenuItem).Checked) AllocConsole();
 			else FreeConsole();
 		}
 		[DllImport("kernel32.dll")]
 		public static extern void AllocConsole();
 		[DllImport("kernel32.dll")]
 		public static extern void FreeConsole();
-	Alarm FindNextAlarm()
-		{
-			Alarm[] actualAlarms = alarms.List.Items.Cast<Alarm>().Where(a=>a.Time>DateTime.Now.TimeOfDay).ToArray();
-			return actualAlarms.Min();
-		}
+		//Alarm FindNextAlarm()
+		//	{
+		//		Alarm[] actualAlarms = alarms.List.Items.Cast<Alarm>().Where(a=>a.Time>DateTime.Now.TimeOfDay).ToArray();
+		//		return actualAlarms.Min();
+		//	}
 	}
 }
