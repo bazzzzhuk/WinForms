@@ -75,14 +75,15 @@
 			this.Name = "AlarmsForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Alarms";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AlarmsForm_FormClosing);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AlarmsForm_FormClosed);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
-
-		private System.Windows.Forms.ListBox listBoxAlarms;
 		private System.Windows.Forms.Button buttonAdd;
 		private System.Windows.Forms.Button buttonDelete;
+		protected System.Windows.Forms.ListBox listBoxAlarms;
 	}
 }

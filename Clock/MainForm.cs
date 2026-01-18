@@ -21,6 +21,7 @@ namespace Clock
 		ColorDialog backgroundColorDialog;
 		AlarmsForm alarms;
 		Alarm alarm;
+		
 
 		public MainForm()
 		{
@@ -76,6 +77,8 @@ namespace Clock
 
 			//System.Diagnostics.Process.Start("notepad", "Settings.ini");
 		}
+
+
 		void LoadSettings()
 		{
 			Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
@@ -109,6 +112,7 @@ namespace Clock
 				MessageBox.Show(this, ex.Message, "SettingsException", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
+
 		private void timer_Tick(object sender, EventArgs e)
 		{
 			//labelTime.Text = DateTime.Now.ToString
@@ -215,6 +219,7 @@ namespace Clock
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			SaveSettings();
+			alarms.SaveAlarms();
 		}
 
 		private void tsmiAlarms_Click(object sender, EventArgs e)

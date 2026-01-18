@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,6 +47,29 @@ namespace Clock
 				buttonAdd_Click(sender, e);
 
 			}
+		}
+
+		public void SaveAlarms()
+		{
+			Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
+			StreamWriter writer = new StreamWriter("AlarmsSettings.ini");
+
+			for (int i = 0; i < listBoxAlarms.Items.Count; i++)
+			{
+				writer.WriteLine((listBoxAlarms.Items[i] as Alarm).ToString());
+			}
+
+			writer.Close();
+			System.Diagnostics.Process.Start("notepad", "AlarmsSettings.ini");
+		}
+		private void AlarmsForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			//SaveAlarms();
+		}
+
+		private void AlarmsForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			//SaveAlarms();
 		}
 	}
 }
