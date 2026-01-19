@@ -125,14 +125,28 @@ namespace Clock
 				labelTime.Text += $"\n{DateTime.Now.ToString("yyyy:MM:dd")}";
 			if (cb_ShowWeekday.Checked)
 				labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
-			//if (alarm != null
-			//	&& alarm.Time.Hours == DateTime.Now.Hour
-			//	&& alarm.Time.Minutes == DateTime.Now.Minute
-			//	&& alarm.Time.Seconds == DateTime.Now.Second
-			//	)
-			//	MessageBox.Show(alarm.ToString());
-			//if (DateTime.Now.Second % 5 == 0) alarm = FindNextAlarm();
-			//notifyIcon.Text = labelTime.Text;
+			if (alarm != null
+				&&(
+				alarm.Date == DateTime.MaxValue ?
+				alarm.Days.Contains((byte)DateTime.Now.DayOfWeek) :
+				CompareDates(alarm.Date, DateTime.Now)
+				)
+				&& alarm.Time.Hours == DateTime.Now.Hour
+				&& alarm.Time.Minutes == DateTime.Now.Minute
+				&& alarm.Time.Seconds == DateTime.Now.Second
+				)
+				MessageBox.Show(alarm.ToString());
+			if (DateTime.Now.Second % 5 == 0) alarm = FindNextAlarm();
+			notifyIcon.Text = labelTime.Text;
+		}
+		bool CompareDates(DateTime date1, DateTime date2 )
+		{
+			return date1.Year == date2.Year && date1.Month ==date2.Month && date1.Day == date2.Day;
+		}
+		Alarm FindNextAlarm()
+		{
+			Alarm[] actualAlarms = alarms.List.Items.Cast<Alarm>().Where(a => a.Time > DateTime.Now.TimeOfDay).ToArray();
+			return actualAlarms.Min();
 		}
 
 		private void btn_HideControls_Click(object sender, EventArgs e)
@@ -245,10 +259,5 @@ namespace Clock
 		public static extern void AllocConsole();
 		[DllImport("kernel32.dll")]
 		public static extern void FreeConsole();
-		//Alarm FindNextAlarm()
-		//	{
-		//		Alarm[] actualAlarms = alarms.List.Items.Cast<Alarm>().Where(a=>a.Time>DateTime.Now.TimeOfDay).ToArray();
-		//		return actualAlarms.Min();
-		//	}
 	}
 }

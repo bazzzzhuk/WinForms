@@ -60,7 +60,7 @@ namespace Clock
 				writer.WriteLine((listBoxAlarms.Items[i] as Alarm).AlarmToString());
 			}
 			writer.Close();
-			System.Diagnostics.Process.Start("notepad", "AlarmsSettings.ini");
+			//System.Diagnostics.Process.Start("notepad", "AlarmsSettings.ini");
 		}
 		
 		public void LoadAlarms()

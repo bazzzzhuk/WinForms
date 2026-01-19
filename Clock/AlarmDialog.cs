@@ -26,6 +26,8 @@ namespace Clock
 				"WAV files (*.wav)|*.wav|" +
 				"OGG files (*.ogg)|*.ogg";
 			Alarm = new Alarm();
+			for(int i=0;i<7;i++)
+				clbWeekDays.SetItemChecked(i, true);
 		}
 		public AlarmDialog(Alarm alarm):this()
 		{
