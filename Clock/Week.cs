@@ -19,15 +19,8 @@ namespace Clock
 		}
 		public void Extract(System.Windows.Forms.CheckedListBox clb)
 		{
-			byte checked_days = 0;
-			for (int i = 0; i < 7; i++) if (Convert.ToBoolean((1 << i) & days) == true) checked_days++;
-			//MessageBox.Show($"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{clb.CheckedItems.Count}!!!t={checked_days}");
-			if (checked_days == 0)
-			{
-				for (int i = 0; i < 7; i++) clb.SetItemChecked(i, true);
-				return;
-			}
-			for (byte i = 0; i < 7; i++) clb.SetItemChecked(i, Convert.ToBoolean((1 << i) & days));
+			if (days == 0) for (int i = 0; i < 7; i++) clb.SetItemChecked(i, true);
+			else for (byte i = 0; i < 7; i++) clb.SetItemChecked(i, Convert.ToBoolean((1 << i) & days));
 		}
 		public byte Extract(string s)
 		{
