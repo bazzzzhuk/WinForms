@@ -40,6 +40,7 @@ namespace Clock
 			if (listBoxAlarms.Items.Count > 0 && listBoxAlarms.SelectedItem != null)
 			{
 				AlarmDialog alarm = new AlarmDialog(listBoxAlarms.SelectedItem as Alarm);
+				alarm.TopMost = true;
 				alarm.Location = new Point(this.Location.X + alarm.Width * 2 - 110, this.Location.Y + 130);
 				alarm.ShowDialog();
 				listBoxAlarms.Items[listBoxAlarms.SelectedIndex] = new Alarm(alarm.Alarm);
@@ -53,8 +54,8 @@ namespace Clock
 		public void SaveAlarms()
 		{
 			Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
+			//if(listBoxAlarms.Items.Count == 0)return;
 			StreamWriter writer = new StreamWriter("AlarmsSettings.ini");
-			if(listBoxAlarms.Items.Count == 0)return;
 			for (int i = 0; i < listBoxAlarms.Items.Count; i++)
 			{
 				writer.WriteLine((listBoxAlarms.Items[i] as Alarm).AlarmToString());
@@ -70,7 +71,7 @@ namespace Clock
 			{
 				StreamReader reader = new StreamReader("AlarmsSettings.ini");
 				//string alarm_ok = reader.ReadLine();
-				if (new FileInfo("AlarmsSettings.ini").Length == 0) return;
+				//if (new FileInfo("AlarmsSettings.ini").Length == 0) return;
 				string s = "";
 				while (reader.ReadLine() == "Alarm:")
 				{
