@@ -12,35 +12,37 @@ namespace Clock
 		static readonly string[] NAMES = { "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" };
 		public byte days { get; set; }
 
-		
+
 		public Week(byte days)
 		{
 			this.days = days;
 		}
 		public void Extract(System.Windows.Forms.CheckedListBox clb)
 		{
-			if (clb.Items.Count != 7) return;
-			for(byte i = 0; i < 7; i++)
+			byte checked_days = 0;
+			for (int i = 0; i < 7; i++) if (Convert.ToBoolean((1 << i) & days) == true) checked_days++;
+			//MessageBox.Show($"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{clb.CheckedItems.Count}!!!t={checked_days}");
+			if (checked_days == 0)
 			{
-				//(clb.Items[i] as CheckBox).Checked = Convert.ToBoolean((1<<i) & days);
-				clb.SetItemChecked(i, Convert.ToBoolean((1 << i) & days));
+				for (int i = 0; i < 7; i++) clb.SetItemChecked(i, true);
+				return;
 			}
-				//return clb;
+			for (byte i = 0; i < 7; i++) clb.SetItemChecked(i, Convert.ToBoolean((1 << i) & days));
 		}
 		public byte Extract(string s)
 		{
 			string[] ss = s.Split(',').ToArray();
 			byte days = 0;
 			MessageBox.Show(ss.Length.ToString());
-			if (ss.Length==null) return days;
-			for(byte i = 0; i < 7; i++)
+			if (ss.Length == null) return days;
+			for (byte i = 0; i < 7; i++)
 			{
 				if (ss.Contains(NAMES[i]))
 					days |= (byte)(1 << i);
 			}
-				return days;
+			return days;
 		}
-		
+
 		public bool Contains(byte day)
 		{
 			if (day == 0) day = 7;
@@ -53,7 +55,7 @@ namespace Clock
 			for (byte i = 0; i < 7; i++)
 			{
 				byte day = (byte)(1 << i);
-				if ((this.days & day) != 0) days += $"{NAMES[i]}," ;
+				if ((this.days & day) != 0) days += $"{NAMES[i]},";
 			}
 			days = days.TrimEnd(',');
 			return days;
