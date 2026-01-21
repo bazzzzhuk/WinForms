@@ -17,10 +17,13 @@ namespace Clock
 		{
 			this.days = days;
 		}
+		public byte GetMask() => days;
 		public void Extract(System.Windows.Forms.CheckedListBox clb)
 		{
-			if (days == 0) for (int i = 0; i < 7; i++) clb.SetItemChecked(i, true);
-			else for (byte i = 0; i < 7; i++) clb.SetItemChecked(i, Convert.ToBoolean((1 << i) & days));
+			if(clb.Items.Count !=7) return;
+			//if (days == 0)	for (int i = 0; i < 7; i++)	clb.SetItemChecked(i, true);
+			//else			
+			for (byte i = 0; i < 7; i++)clb.SetItemChecked(i, Convert.ToBoolean((1 << i) & days));
 		}
 		public byte Extract(string s)
 		{
