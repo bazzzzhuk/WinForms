@@ -119,5 +119,6 @@ namespace Clock
 			if (listBoxAlarms.SelectedIndex != -1)
 				listBoxAlarms.Items.RemoveAt(listBoxAlarms.SelectedIndex);
 		}
+
 	}
 }

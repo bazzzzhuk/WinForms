@@ -21,6 +21,7 @@ namespace Clock
 		ColorDialog backgroundColorDialog;
 		AlarmsForm alarms;
 		Alarm alarm;
+		DateTime dateTime;
 
 
 		public MainForm()
@@ -244,7 +245,7 @@ namespace Clock
 			RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true); //true - открыть ветку на запись
 			if (tsmiAutoStart.Checked) rk.SetValue(key_name, Application.ExecutablePath);
 			else rk.DeleteValue(key_name, false); //false - не бросать исключение если данная запись отсутствует в реестре.
-			rk.Dispose();
+			rk.Dispose();	
 		}
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -276,5 +277,24 @@ namespace Clock
 		public static extern void AllocConsole();
 		[DllImport("kernel32.dll")]
 		public static extern void FreeConsole();
+
+		private void Sleep_btn_Click(object sender, EventArgs e)
+		{
+			alarm = new Alarm();
+			//alarm = FindNextAlarm();
+			alarm = alarms.List.Items[0] as Alarm;
+			string time_sleep = $"{alarm.Date.ToString("dd.MM.yyyy")} {alarm.Time}";
+			if (alarm != null) MessageBox.Show(time_sleep);
+			else MessageBox.Show("???");
+			WakeUP wup = new WakeUP();
+			wup.Woken += WakeUP_Woken;
+			dateTime = Convert.ToDateTime(time_sleep);
+			wup.SetWakeUpTime(dateTime);
+			Application.SetSuspendState(PowerState.Suspend, false, false);
+		}
+		private void WakeUP_Woken(object sender, EventArgs e)
+		{
+			MessageBox.Show("Do something!!!");
+		}
 	}
 }

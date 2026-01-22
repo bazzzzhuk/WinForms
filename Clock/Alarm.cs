@@ -21,7 +21,7 @@ namespace Clock
 			this.Date = other.Date;
 			this.Time = other.Time;
 			this.Days = other.Days;
-			Filename = other.Filename;
+			this.Filename = other.Filename;
 		}
 		public int CompareTo(Alarm other)
 		{

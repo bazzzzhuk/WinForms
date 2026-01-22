@@ -56,6 +56,7 @@
 			this.btn_HideControls = new System.Windows.Forms.Button();
 			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
 			this.axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+			this.Sleep_btn = new System.Windows.Forms.Button();
 			this.contextMenuStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).BeginInit();
 			this.SuspendLayout();
@@ -257,9 +258,9 @@
 			// btn_HideControls
 			// 
 			this.btn_HideControls.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_HideControls.Location = new System.Drawing.Point(20, 332);
+			this.btn_HideControls.Location = new System.Drawing.Point(20, 379);
 			this.btn_HideControls.Name = "btn_HideControls";
-			this.btn_HideControls.Size = new System.Drawing.Size(254, 100);
+			this.btn_HideControls.Size = new System.Drawing.Size(254, 53);
 			this.btn_HideControls.TabIndex = 3;
 			this.btn_HideControls.Text = "Hide controls";
 			this.btn_HideControls.UseVisualStyleBackColor = true;
@@ -276,13 +277,24 @@
 			// axWindowsMediaPlayer
 			// 
 			this.axWindowsMediaPlayer.Enabled = true;
-			this.axWindowsMediaPlayer.Location = new System.Drawing.Point(26, 168);
+			this.axWindowsMediaPlayer.Location = new System.Drawing.Point(23, 152);
 			this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
 			this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
 			this.axWindowsMediaPlayer.Size = new System.Drawing.Size(251, 78);
 			this.axWindowsMediaPlayer.TabIndex = 4;
 			this.axWindowsMediaPlayer.Visible = false;
 			this.axWindowsMediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.SetPlayerInvisible);
+			// 
+			// Sleep_btn
+			// 
+			this.Sleep_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.Sleep_btn.Location = new System.Drawing.Point(23, 337);
+			this.Sleep_btn.Name = "Sleep_btn";
+			this.Sleep_btn.Size = new System.Drawing.Size(251, 36);
+			this.Sleep_btn.TabIndex = 5;
+			this.Sleep_btn.Text = "Спящий режим";
+			this.Sleep_btn.UseVisualStyleBackColor = true;
+			this.Sleep_btn.Click += new System.EventHandler(this.Sleep_btn_Click);
 			// 
 			// MainForm
 			// 
@@ -291,6 +303,7 @@
 			this.AutoScroll = true;
 			this.AutoSize = true;
 			this.ClientSize = new System.Drawing.Size(298, 445);
+			this.Controls.Add(this.Sleep_btn);
 			this.Controls.Add(this.axWindowsMediaPlayer);
 			this.Controls.Add(this.btn_HideControls);
 			this.Controls.Add(this.cb_ShowWeekday);
@@ -338,6 +351,7 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
 		private System.Windows.Forms.ToolStripMenuItem tsmiQuit;
 		private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer;
+		private System.Windows.Forms.Button Sleep_btn;
 	}
 }
 
