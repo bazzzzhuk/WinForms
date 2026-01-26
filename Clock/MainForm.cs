@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
+using System.Runtime.InteropServices.ComTypes;
 
 
 namespace Clock
@@ -54,28 +55,40 @@ namespace Clock
 		}
 		void SaveSettings()
 		{
-			Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
-			//MessageBox.Show(this, Directory.GetCurrentDirectory(),"Setting path",MessageBoxButtons.OK, MessageBoxIcon.Information);
-			StreamWriter writer = new StreamWriter("Settings.ini");
+			//FileStream fs = null;
+			//MessageBox.Show(path);
 
-			writer.WriteLine(this.Location.X);
-			writer.WriteLine(this.Location.Y);
+			//// Handles whether there is a `\` or not.Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
+			////MessageBox.Show(this, Directory.GetCurrentDirectory(),"Setting path",MessageBoxButtons.OK, MessageBoxIcon.Information);
+			//fs = new FileStream(filePath, FileMode.CreateNew);
+			//StreamWriter writer = new StreamWriter(filePath);
+			//DirectoryInfo[] cDirs = new DirectoryInfo(@"c:\").GetDirectories();
+			// Write each directory name to a file.
+			String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			var filePath = Path.Combine(path, "Settings_Clock.ini");
 
-			writer.WriteLine(tsmiTopmost.Checked);
-			writer.WriteLine(tsmiShowControls.Checked);
-			writer.WriteLine(tsmiShowConsole.Checked);
+			using (StreamWriter writer = new StreamWriter(filePath))
+			{
+				writer.WriteLine(this.Location.X);
+				writer.WriteLine(this.Location.Y);
+
+				writer.WriteLine(tsmiTopmost.Checked);
+				writer.WriteLine(tsmiShowControls.Checked);
+				writer.WriteLine(tsmiShowConsole.Checked);
+				//
+				writer.WriteLine(tsmiShowDate.Checked);
+				writer.WriteLine(tsmiShowWeekday.Checked);
+				writer.WriteLine(tsmiAutoStart.Checked);
+				//
+				writer.WriteLine(labelTime.BackColor.ToArgb());
+				writer.WriteLine(labelTime.ForeColor.ToArgb());
+				//
+				writer.WriteLine(fontDialog.Filename);
+				writer.WriteLine(labelTime.Font.Size);
+
+				writer.Close();
+			}
 			//
-			writer.WriteLine(tsmiShowDate.Checked);
-			writer.WriteLine(tsmiShowWeekday.Checked);
-			writer.WriteLine(tsmiAutoStart.Checked);
-			//
-			writer.WriteLine(labelTime.BackColor.ToArgb());
-			writer.WriteLine(labelTime.ForeColor.ToArgb());
-			//
-			writer.WriteLine(fontDialog.Filename);
-			writer.WriteLine(labelTime.Font.Size);
-			//
-			writer.Close();
 
 			//System.Diagnostics.Process.Start("notepad", "Settings.ini");
 		}
@@ -83,31 +96,41 @@ namespace Clock
 
 		void LoadSettings()
 		{
-			Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
+			String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			//MessageBox.Show(path);
+
+			var filePath = Path.Combine(path, "Settings_Clock.ini"); // Handles whether there is a `\` or not.
+
+
+			//Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
 			try
 			{
+				string line = "";
+				using (StreamReader reader = new StreamReader(filePath))
+				{
+					//StreamReader reader = new StreamReader(filePath);
+					this.Location = new Point
+						(
+						Convert.ToInt32(reader.ReadLine()),
+						Convert.ToInt32(reader.ReadLine())
+						);
 
-				StreamReader reader = new StreamReader("Settings.ini");
-				this.Location = new Point
-					(
-					Convert.ToInt32(reader.ReadLine()),
-					Convert.ToInt32(reader.ReadLine())
-					);
+					this.TopMost = tsmiTopmost.Checked = bool.Parse(reader.ReadLine());
+					tsmiShowControls.Checked = bool.Parse(reader.ReadLine());
+					tsmiShowConsole.Checked = bool.Parse(reader.ReadLine());
+					tsmiShowDate.Checked = bool.Parse(reader.ReadLine());
+					tsmiShowWeekday.Checked = bool.Parse(reader.ReadLine());
+					tsmiAutoStart.Checked = bool.Parse(reader.ReadLine());
 
-				this.TopMost = tsmiTopmost.Checked = bool.Parse(reader.ReadLine());
-				tsmiShowControls.Checked = bool.Parse(reader.ReadLine());
-				tsmiShowConsole.Checked = bool.Parse(reader.ReadLine());
-				tsmiShowDate.Checked = bool.Parse(reader.ReadLine());
-				tsmiShowWeekday.Checked = bool.Parse(reader.ReadLine());
-				tsmiAutoStart.Checked = bool.Parse(reader.ReadLine());
+					labelTime.BackColor = backgroundColorDialog.Color = Color.FromArgb(Convert.ToInt32(reader.ReadLine()));
+					labelTime.ForeColor = foregroundColorDialog.Color = Color.FromArgb(Convert.ToInt32(reader.ReadLine()));
 
-				labelTime.BackColor = backgroundColorDialog.Color = Color.FromArgb(Convert.ToInt32(reader.ReadLine()));
-				labelTime.ForeColor = foregroundColorDialog.Color = Color.FromArgb(Convert.ToInt32(reader.ReadLine()));
+					fontDialog = new FontDialog(reader.ReadLine(), reader.ReadLine());
+					labelTime.Font = fontDialog.Font;
 
-				fontDialog = new FontDialog(reader.ReadLine(), reader.ReadLine());
-				labelTime.Font = fontDialog.Font;
+					reader.Close();
+				}
 
-				reader.Close();
 			}
 			catch (Exception ex)
 			{
@@ -138,7 +161,7 @@ namespace Clock
 				&& alarm.Time.Seconds == DateTime.Now.Second
 				)
 				PlayAlarm();
-				//MessageBox.Show(alarm.ToString());
+			//MessageBox.Show(alarm.ToString());
 			if (DateTime.Now.Second % 5 == 0) alarm = FindNextAlarm();
 			notifyIcon.Text = labelTime.Text;
 		}
@@ -151,15 +174,15 @@ namespace Clock
 		}
 		void SetPlayerInvisible(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
 		{
-			if(
-				axWindowsMediaPlayer.playState == WMPLib.WMPPlayState.wmppsMediaEnded||
+			if (
+				axWindowsMediaPlayer.playState == WMPLib.WMPPlayState.wmppsMediaEnded ||
 				axWindowsMediaPlayer.playState == WMPLib.WMPPlayState.wmppsStopped
 				)
-				axWindowsMediaPlayer.Visible=false;
+				axWindowsMediaPlayer.Visible = false;
 		}
-		bool CompareDates(DateTime date1, DateTime date2 )
+		bool CompareDates(DateTime date1, DateTime date2)
 		{
-			return date1.Year == date2.Year && date1.Month ==date2.Month && date1.Day == date2.Day;
+			return date1.Year == date2.Year && date1.Month == date2.Month && date1.Day == date2.Day;
 		}
 		Alarm FindNextAlarm()
 		{
@@ -245,7 +268,7 @@ namespace Clock
 			RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true); //true - открыть ветку на запись
 			if (tsmiAutoStart.Checked) rk.SetValue(key_name, Application.ExecutablePath);
 			else rk.DeleteValue(key_name, false); //false - не бросать исключение если данная запись отсутствует в реестре.
-			rk.Dispose();	
+			rk.Dispose();
 		}
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

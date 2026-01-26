@@ -53,54 +53,69 @@ namespace Clock
 
 		public void SaveAlarms()
 		{
-			Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
-			//if(listBoxAlarms.Items.Count == 0)return;
-			StreamWriter writer = new StreamWriter("AlarmsSettings.ini");
-			for (int i = 0; i < listBoxAlarms.Items.Count; i++)
+			////Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
+			////if(listBoxAlarms.Items.Count == 0)return;
+			//StreamWriter writer = new StreamWriter(filePath);
+
+			String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			//DirectoryInfo[] cDirs = new DirectoryInfo(@"c:\").GetDirectories();
+			var filePath = Path.Combine(path, "AlarmsSettings.ini");
+
+			// Write each directory name to a file.
+			using (StreamWriter writer = new StreamWriter(filePath))
 			{
-				writer.WriteLine((listBoxAlarms.Items[i] as Alarm).AlarmToString());
-			}
+				for (int i = 0; i < listBoxAlarms.Items.Count; i++)
+				{
+					writer.WriteLine((listBoxAlarms.Items[i] as Alarm).AlarmToString());
+				}
 			writer.Close();
+			}
 			//System.Diagnostics.Process.Start("notepad", "AlarmsSettings.ini");
 		}
 		
 		public void LoadAlarms()
 		{
-			Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
-			try
-			{
-				StreamReader reader = new StreamReader("AlarmsSettings.ini");
-				//string alarm_ok = reader.ReadLine();
-				//if (new FileInfo("AlarmsSettings.ini").Length == 0) return;
-				string s = "";
-				while (reader.ReadLine() == "Alarm:")
-				{
-					Alarm alarm = new Alarm();
-					//string DateAndTime = reader.ReadLine() + " " + reader.ReadLine();
-					DateTime load_day = DateTime.Parse(reader.ReadLine().ToString());
-					//load_day = DateTime.MaxValue;
-					//MessageBox.Show(load_day.ToString());
-					if(load_day.ToString()== "31.12.9999 23:59:59")load_day = DateTime.MaxValue;
-					alarm.Date = load_day; 
-						//DateTime.Parse(load_day.ToString("yyyy.MM.dd"));
-					//MessageBox.Show(DT.Date.ToString("yyyy.MM.dd"));
-					alarm.Time = TimeSpan.Parse(reader.ReadLine());
-					alarm.Days = null;
-					s = reader.ReadLine();
-					//MessageBox.Show(s);
-					alarm.Days = new Week(byte.Parse(s));
-					alarm.Filename = reader.ReadLine().ToString();
-					//AlarmDialog alarm_l = new AlarmDialog(alarm);
-					List.Items.Add(new Alarm(alarm));
-					//MessageBox.Show(alarm.ToString());
-				}
+			String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			var filePath = Path.Combine(path, "AlarmsSettings.ini");
+			////Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
 
-				reader.Close();
-			}
-			catch (Exception ex)
+
+			using (StreamReader reader = new StreamReader(filePath))
 			{
-				//reader.Close();
-				MessageBox.Show(this, ex.Message, "AlarmSettingsException", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				try
+				{
+					//StreamReader reader = new StreamReader(sr);
+					//string alarm_ok = reader.ReadLine();
+					//if (new FileInfo("AlarmsSettings.ini").Length == 0) return;
+					string s = "";
+					while (reader.ReadLine() == "Alarm:")
+					{
+						Alarm alarm = new Alarm();
+						//string DateAndTime = reader.ReadLine() + " " + reader.ReadLine();
+						DateTime load_day = DateTime.Parse(reader.ReadLine().ToString());
+						//load_day = DateTime.MaxValue;
+						//MessageBox.Show(load_day.ToString());
+						if (load_day.ToString() == "31.12.9999 23:59:59") load_day = DateTime.MaxValue;
+						alarm.Date = load_day;
+						//DateTime.Parse(load_day.ToString("yyyy.MM.dd"));
+						//MessageBox.Show(DT.Date.ToString("yyyy.MM.dd"));
+						alarm.Time = TimeSpan.Parse(reader.ReadLine());
+						alarm.Days = null;
+						s = reader.ReadLine();
+						//MessageBox.Show(s);
+						alarm.Days = new Week(byte.Parse(s));
+						alarm.Filename = reader.ReadLine().ToString();
+						//AlarmDialog alarm_l = new AlarmDialog(alarm);
+						List.Items.Add(new Alarm(alarm));
+						//MessageBox.Show(alarm.ToString());
+					}
+					reader.Close();
+				}
+				catch (Exception ex)
+				{
+					//reader.Close();
+					MessageBox.Show(this, ex.Message, "AlarmSettingsException", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
 			}
 
 		}
