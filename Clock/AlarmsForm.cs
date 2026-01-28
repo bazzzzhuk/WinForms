@@ -58,8 +58,10 @@ namespace Clock
 			//StreamWriter writer = new StreamWriter(filePath);
 
 			String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-			//DirectoryInfo[] cDirs = new DirectoryInfo(@"c:\").GetDirectories();
-			var filePath = Path.Combine(path, "AlarmsSettings.ini");
+			String folderName = Path.Combine(path, "Clock_PV521"); ;
+			String filePath = Path.Combine(folderName, "AlarmsSettings.ini");
+			FileInfo fileInf = new FileInfo(filePath);
+			if (!fileInf.Exists) fileInf.Create();
 
 			// Write each directory name to a file.
 			using (StreamWriter writer = new StreamWriter(filePath))
@@ -76,7 +78,7 @@ namespace Clock
 		public void LoadAlarms()
 		{
 			String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-			var filePath = Path.Combine(path, "AlarmsSettings.ini");
+			var filePath = Path.Combine(path, "Clock_PV521\\AlarmsSettings.ini");
 			////Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
 
 

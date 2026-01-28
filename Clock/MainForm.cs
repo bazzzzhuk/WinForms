@@ -11,6 +11,9 @@ using System.IO;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.Runtime.InteropServices.ComTypes;
+using static System.Net.WebRequestMethods;
+using System.Security.AccessControl;
+using System.Security.Principal;
 
 
 namespace Clock
@@ -58,14 +61,57 @@ namespace Clock
 			//FileStream fs = null;
 			//MessageBox.Show(path);
 
-			//// Handles whether there is a `\` or not.Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
+			//// Handles whether there is a `\` or not.
 			////MessageBox.Show(this, Directory.GetCurrentDirectory(),"Setting path",MessageBoxButtons.OK, MessageBoxIcon.Information);
 			//fs = new FileStream(filePath, FileMode.CreateNew);
 			//StreamWriter writer = new StreamWriter(filePath);
 			//DirectoryInfo[] cDirs = new DirectoryInfo(@"c:\").GetDirectories();
 			// Write each directory name to a file.
 			String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-			var filePath = Path.Combine(path, "Settings_Clock.ini");
+			String path2 = ($"{Application.ExecutablePath}\\..");
+			String folderName = Path.Combine(path, "Clock_PV521"); ;
+			DirectoryInfo drInfo = new DirectoryInfo(folderName);
+			//if (drInfo.Exists) drInfo.Create();
+			var filePath = Path.Combine(folderName, "Settings_Clock.ini");
+
+			FileInfo fileInf = new FileInfo(filePath);
+			//if (fileInf.Exists) fileInf.Create();
+
+			string filePath2 = Path.Combine(path2, "TEST.txt");
+			//string filePath2 = Path.Combine("c:\\", "TEST.txt");
+			//using (FileStream myFile = new FileStream(filePath2, FileMode.Open, FileAccess.Read))
+			//{
+			//	FileSecurity fileSec = myFile.GetAccessControl();
+			//	FileSystemAccessRule newRule = new FileSystemAccessRule(new System.Security.Principal.NTAccount(@"admin"), FileSystemRights.FullControl, AccessControlType.Allow);
+			//	fileSec.AddAccessRule(newRule);
+			//	System.IO.File.SetAccessControl(filePath2, fileSec);
+			//}
+
+			//using (FileStream myFile = new FileStream(filePath2, FileMode.Open, FileAccess.Read))
+			//{
+			//}
+			using (StreamWriter writer1 = new StreamWriter(filePath2))
+			{
+				writer1.WriteLine("TEST2");
+				writer1.WriteLine("TEST2");
+				writer1.Close();
+			}
+			//var fileSecurity = new System.Security.AccessControl.FileSecurity();
+			//var everyone = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
+			//var rule = new FileSystemAccessRule(everyone, FileSystemRights.FullControl, AccessControlType.Allow);
+			//fileSecurity.AddAccessRule(rule);
+			//System.IO.File.SetAccessControl(filePath2, fileSecurity);
+
+			//var fileSecurity = new System.Security.AccessControl.FileSecurity();
+			//var everyone = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
+			//var rule = new FileSystemAccessRule(everyone, FileSystemRights.FullControl, AccessControlType.Allow);
+			//fileSecurity.AddAccessRule(rule);
+
+			//System.IO.File.SetAccessControl("TEST.txt", fileSecurity);
+
+			FileInfo fileInf2 = new FileInfo(filePath);
+			if (!fileInf.Exists) fileInf.Create();
+
 
 			using (StreamWriter writer = new StreamWriter(filePath))
 			{
@@ -99,7 +145,7 @@ namespace Clock
 			String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 			//MessageBox.Show(path);
 
-			var filePath = Path.Combine(path, "Settings_Clock.ini"); // Handles whether there is a `\` or not.
+			var filePath = Path.Combine(path, "Clock_PV521\\Settings_Clock.ini"); // Handles whether there is a `\` or not.
 
 
 			//Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
