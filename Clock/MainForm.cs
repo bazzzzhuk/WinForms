@@ -96,11 +96,11 @@ namespace Clock
 				writer1.WriteLine("TEST2");
 				writer1.Close();
 			}
-			//var fileSecurity = new System.Security.AccessControl.FileSecurity();
-			//var everyone = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
-			//var rule = new FileSystemAccessRule(everyone, FileSystemRights.FullControl, AccessControlType.Allow);
-			//fileSecurity.AddAccessRule(rule);
-			//System.IO.File.SetAccessControl(filePath2, fileSecurity);
+			var fileSecurity = new System.Security.AccessControl.FileSecurity();
+			var everyone = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
+			var rule = new FileSystemAccessRule(everyone, FileSystemRights.FullControl, AccessControlType.Allow);
+			fileSecurity.AddAccessRule(rule);
+			System.IO.File.SetAccessControl(filePath2, fileSecurity);
 
 			//var fileSecurity = new System.Security.AccessControl.FileSecurity();
 			//var everyone = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
